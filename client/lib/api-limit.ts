@@ -1,7 +1,11 @@
 import { auth } from "@clerk/nextjs/server";
 
 import prismadb from "./prisma.db";
-import { FEATURE_REQUEST_LIMITS_BY_NAME, STABLE_FEATURE_LIMIT_NUMBER } from "@/constants/api";
+import {
+  FEATURE_REQUEST_LIMITS_BY_NAME,
+  STABLE_FEATURE_LIMIT_NUMBER,
+  ZERO_USERS_REQUEST,
+} from "@/constants/api";
 
 const incrementApiLimit = async (feature: string): Promise<void> => {
   const { userId } = auth();
@@ -47,4 +51,19 @@ const checkApiLimit = async (feature: keyof typeof FEATURE_REQUEST_LIMITS_BY_NAM
   }
 };
 
-export { incrementApiLimit, checkApiLimit };
+const getApiLimitCount = async () => {
+  const { userId } = auth();
+  if (!userId) {
+    return ZERO_USERS_REQUEST;
+  }
+  const userApiLimit = await prismadb.userApiLimit.findUnique({
+    where: {
+      userId,
+    },
+  });
+  if (!userApiLimit) {
+    return ZERO_USERS_REQUEST;
+  }
+  return userApiLimit.count;
+};
+export { incrementApiLimit, checkApiLimit, getApiLimitCount };

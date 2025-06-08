@@ -12,6 +12,8 @@ import {
   API_MUSIC,
   FETCH_VIDEO,
   API_VIDEO,
+  FETCH_LIMIT,
+  API_LIMIT,
 } from "@/constants/api";
 
 const fetchMessagesList = createAsyncThunk<MessageType[], MessageType[]>(
@@ -58,6 +60,8 @@ const fetchMusic = createAsyncThunk<MusicFile[], MusicGenerationRequest>(
   },
 );
 
+//HANDLE  video request
+
 const fetchVideo = createAsyncThunk<VideoFileFullResponse, { prompt: string }>(
   FETCH_VIDEO,
   async ({ prompt }) => {
@@ -70,4 +74,17 @@ export const setVideoData = (videoData: string) => ({
   type: "SET_VIDEO_DATA",
   payload: videoData,
 });
-export { fetchMessagesList, fetchCodeMessagesList, fetchImage, fetchMusic, fetchVideo };
+
+const fetchApiLimitCount = createAsyncThunk<number>(FETCH_LIMIT, async () => {
+  const response = await axios.get(API_LIMIT);
+  return response.data.count;
+});
+
+export {
+  fetchMessagesList,
+  fetchCodeMessagesList,
+  fetchImage,
+  fetchMusic,
+  fetchVideo,
+  fetchApiLimitCount,
+};

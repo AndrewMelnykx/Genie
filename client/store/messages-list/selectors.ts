@@ -3,14 +3,13 @@ import { RootState } from "../index";
 const conversationMessagesDataSelector = (state: RootState) =>
   state.requestAIData.conversationMessages;
 
-const codeMessagesDataSelector = (state: RootState) =>
-  state.requestAIData.codeMessages;
+const codeMessagesDataSelector = (state: RootState) => state.requestAIData.codeMessages;
 const imagesDataSelector = (state: RootState) => state.requestAIData.imagesData;
 
 const musicDataSelector = (state: RootState) => state.requestAIData.musicData;
 const videoDataSelector = (state: RootState) => state.requestAIData.videoData;
-const parsedSelector = (state: RootState) =>
-  state.requestAIData.dataFromStorage;
+const parsedSelector = (state: RootState) => state.requestAIData.dataFromStorage;
+const apiLimitCountSelector = (state: RootState) => state.requestAIData.apiLimitCount;
 
 export {
   codeMessagesDataSelector,
@@ -19,4 +18,5 @@ export {
   musicDataSelector,
   videoDataSelector,
   parsedSelector,
+  apiLimitCountSelector,
 };

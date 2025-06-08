@@ -5,10 +5,13 @@ import Link from "next/link";
 import LogoImage from "@/images/lamp.png";
 
 import { cn } from "@/lib/utils";
+import { FreeCounter } from "@/components/free-counter";
 import { routes } from "@/constants/route";
+
 import { montserrat } from "@/helpers/constants/style";
-import { usePathname } from "next/navigation";
 import { Cedarville, UncialAntiqua } from "@/helpers/fonts";
+
+import { usePathname } from "next/navigation";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -55,6 +58,7 @@ const Sidebar = () => {
           )}
         </div>
       </div>
+      <FreeCounter />
     </div>
   );
 };

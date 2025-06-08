@@ -8,6 +8,7 @@ interface requestAIHandlingTypes {
   musicData: MusicFile[];
   videoData: VideoFileFullResponse | null;
   dataFromStorage: string;
+  apiLimitCount: number;
 }
 
 type RoleType = "user" | "system" | "bot";
