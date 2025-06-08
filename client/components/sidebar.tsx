@@ -12,10 +12,13 @@ import { montserrat } from "@/helpers/constants/style";
 import { Cedarville, UncialAntiqua } from "@/helpers/fonts";
 
 import { usePathname } from "next/navigation";
+import { getFeatureTypeFromUrl } from "@/helpers/funcs";
+import { BASIC_LINK_ENDING } from "@/helpers/constants/api";
 
 const Sidebar = () => {
   const pathname = usePathname();
 
+  const featureType = getFeatureTypeFromUrl(pathname) ?? BASIC_LINK_ENDING;
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">
@@ -58,7 +61,7 @@ const Sidebar = () => {
           )}
         </div>
       </div>
-      <FreeCounter />
+      <FreeCounter featureType={featureType} />
     </div>
   );
 };

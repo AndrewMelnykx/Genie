@@ -16,12 +16,14 @@ const MUSIC_API_LINK = "https://api.musicfy.lol/v1/generate-music";
 const VIDEO_API_LINK = "http://localhost:5000/generate_video";
 
 enum FeatureType {
-  CONVERSATION = "CONVERSATION",
-  IMAGE = "IMAGE",
-  VIDEO = "VIDEO",
-  MUSIC = "MUSIC",
-  CODE = "CODE",
+  CONVERSATION = "conversation",
+  IMAGE = "image",
+  VIDEO = "video",
+  MUSIC = "music",
+  CODE = "code",
 }
+
+const BASIC_LINK_ENDING = FeatureType.CONVERSATION;
 
 const FEATURE_REQUEST_LIMITS_BY_NAME: Record<FeatureType, number> = {
   [FeatureType.CONVERSATION]: 2,
@@ -31,7 +33,14 @@ const FEATURE_REQUEST_LIMITS_BY_NAME: Record<FeatureType, number> = {
   [FeatureType.CODE]: 5,
 };
 
-const STABLE_FEATURE_LIMIT_NUMBER = 3;
+const LAST_SEGMENT_TO_FEATURE_TYPE: Record<string, FeatureType> = {
+  conversation: FeatureType.CONVERSATION,
+  image: FeatureType.IMAGE,
+  video: FeatureType.VIDEO,
+  music: FeatureType.MUSIC,
+  code: FeatureType.CODE,
+};
+const STABLE_FEATURE_LIMIT_NUMBER = 2;
 const ZERO_USERS_REQUEST = 0;
 const prerequisiteText =
   "Please only provide the code, and no additional explanations, and after code part explain what you wrote for a beginner in coding , do it relying on complexity of the request.Do a margin for one row after code part";
@@ -56,4 +65,6 @@ export {
   ZERO_USERS_REQUEST,
   API_LIMIT,
   FETCH_LIMIT,
+  LAST_SEGMENT_TO_FEATURE_TYPE,
+  BASIC_LINK_ENDING,
 };

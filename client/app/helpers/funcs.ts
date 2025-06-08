@@ -1,5 +1,5 @@
 import { MessageType } from "@/store/types";
-import { prerequisiteText } from "@/constants/api";
+import { FeatureType, LAST_SEGMENT_TO_FEATURE_TYPE, prerequisiteText } from "@/constants/api";
 import { EnhancedGenerateContentResponse } from "@google/generative-ai";
 
 const filterMessage = (codeMessagesData: MessageType[]) => {
@@ -21,4 +21,8 @@ function validateGeminiResponse(
     response.candidates[0].content.parts[0]?.inlineData?.data
   );
 }
-export { filterMessage, validateGeminiResponse };
+function getFeatureTypeFromUrl(url: string): FeatureType | undefined {
+  const lastSegment = url.split("/").filter(Boolean).pop();
+  return lastSegment ? LAST_SEGMENT_TO_FEATURE_TYPE[lastSegment] : undefined;
+}
+export { filterMessage, validateGeminiResponse, getFeatureTypeFromUrl };
