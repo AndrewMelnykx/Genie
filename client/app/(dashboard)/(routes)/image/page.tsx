@@ -4,7 +4,7 @@ import { ImageIcon } from "lucide-react";
 
 import Heading from "@/components/heading";
 import CustomForm from "@/components/custom-form";
-import EmptyImage from "@images/empty-pic.png";
+import EmptyImage from "@/images/empty-pic.png";
 
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/laoder";
