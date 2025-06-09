@@ -61,9 +61,7 @@ const getApiLimitCount = async () => {
       userId,
     },
   });
-  if (!userApiLimit) {
-    return ZERO_USERS_REQUEST;
-  }
-  return userApiLimit.count;
+
+  return userApiLimit ? userApiLimit.count : ZERO_USERS_REQUEST;
 };
 export { incrementApiLimit, checkApiLimit, getApiLimitCount };
