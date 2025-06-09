@@ -3,8 +3,8 @@ import { auth } from "@clerk/nextjs/server";
 import prismadb from "./prisma.db";
 import {
   FEATURE_REQUEST_LIMITS_BY_NAME,
+  FeatureType,
   STABLE_FEATURE_LIMIT_NUMBER,
-  // ZERO_USERS_REQUEST,
 } from "@/constants/api";
 
 const incrementApiLimit = async (feature: string): Promise<void> => {
@@ -12,20 +12,24 @@ const incrementApiLimit = async (feature: string): Promise<void> => {
   if (!userId) {
     return;
   }
-  const userApiLimit = await prismadb.userApiLimit.findUnique({
+  const alreadyExistedUser = await prismadb.userApiLimit.findUnique({
     where: {
-      userId,
-      feature,
-    },
-  });
-  if (userApiLimit) {
-    await prismadb.userApiLimit.update({
-      where: {
+      userId_feature: {
         userId,
         feature,
       },
+    },
+  });
+  if (alreadyExistedUser) {
+    await prismadb.userApiLimit.update({
+      where: {
+        userId_feature: {
+          userId,
+          feature,
+        },
+      },
       data: {
-        count: userApiLimit.count + 1,
+        count: alreadyExistedUser.count + 1,
       },
     });
   } else {
@@ -35,14 +39,14 @@ const incrementApiLimit = async (feature: string): Promise<void> => {
   }
 };
 
-const checkApiLimit = async (feature: keyof typeof FEATURE_REQUEST_LIMITS_BY_NAME) => {
+const checkApiLimit = async (feature: FeatureType) => {
   const { userId } = auth();
   if (!userId) {
     return false;
   }
   const maxFreeCount = FEATURE_REQUEST_LIMITS_BY_NAME[feature] ?? STABLE_FEATURE_LIMIT_NUMBER;
   const userApiLimit = await prismadb.userApiLimit.findUnique({
-    where: { userId, feature },
+    where: { userId_feature: { userId, feature } },
   });
   if (!userApiLimit || userApiLimit.count < maxFreeCount) {
     return true;
@@ -51,7 +55,7 @@ const checkApiLimit = async (feature: keyof typeof FEATURE_REQUEST_LIMITS_BY_NAM
   }
 };
 
-const getApiLimitCount = async () => {
+const getApiLimitCount = async (feature: FeatureType) => {
   const { userId } = auth();
   if (!userId) {
     return [];
@@ -59,6 +63,7 @@ const getApiLimitCount = async () => {
   const userApiLimit = await prismadb.userApiLimit.findMany({
     where: {
       userId,
+      feature,
     },
   });
 

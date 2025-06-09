@@ -24,10 +24,12 @@ const FreeCounter = ({
     dispatch(fetchApiLimitCount());
     setMounted(true);
     console.log(apiCountData);
+    console.log("request is done well");
   }, [dispatch]);
   useEffect(() => {
     if (mounted) {
       dispatch(fetchApiLimitCount());
+      console.log("request is done well");
     }
   }, [apiCountData, dispatch]);
   if (!mounted) {

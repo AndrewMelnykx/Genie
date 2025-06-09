@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { incrementApiLimit, checkApiLimit, getApiLimitCount } from "@/lib/api-limit";
 import { NextResponse } from "next/server";
 import { FeatureType } from "@/constants/api";
 import { UseStoreDispatcher } from "@/store/index";
@@ -39,6 +39,7 @@ export async function POST(request: Request) {
     }
     await incrementApiLimit(FeatureType.CONVERSATION);
     // dispatch(fetchApiLimitCount());
+    await getApiLimitCount(FeatureType.CONVERSATION);
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });

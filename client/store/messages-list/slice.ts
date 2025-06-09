@@ -65,6 +65,7 @@ const requestAISlice = createSlice({
       })
       .addCase(fetchApiLimitCount.fulfilled, (state, action) => {
         state.apiLimitCount = action.payload;
+        console.log("request is done well");
       });
   },
 });
