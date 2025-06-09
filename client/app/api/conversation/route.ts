@@ -38,7 +38,7 @@ export async function POST(request: Request) {
       return new NextResponse("Free trial has expired", { status: 403 });
     }
     await incrementApiLimit(FeatureType.CONVERSATION);
-    dispatch(fetchApiLimitCount());
+    // dispatch(fetchApiLimitCount());
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });

@@ -4,7 +4,7 @@ import prismadb from "./prisma.db";
 import {
   FEATURE_REQUEST_LIMITS_BY_NAME,
   STABLE_FEATURE_LIMIT_NUMBER,
-  ZERO_USERS_REQUEST,
+  // ZERO_USERS_REQUEST,
 } from "@/constants/api";
 
 const incrementApiLimit = async (feature: string): Promise<void> => {
@@ -54,14 +54,17 @@ const checkApiLimit = async (feature: keyof typeof FEATURE_REQUEST_LIMITS_BY_NAM
 const getApiLimitCount = async () => {
   const { userId } = auth();
   if (!userId) {
-    return ZERO_USERS_REQUEST;
+    return [];
   }
-  const userApiLimit = await prismadb.userApiLimit.findUnique({
+  const userApiLimit = await prismadb.userApiLimit.findMany({
     where: {
       userId,
     },
   });
 
-  return userApiLimit ? userApiLimit.count : ZERO_USERS_REQUEST;
+  return userApiLimit.map(limit => ({
+    feature: limit.feature,
+    count: limit.count,
+  }));
 };
 export { incrementApiLimit, checkApiLimit, getApiLimitCount };
