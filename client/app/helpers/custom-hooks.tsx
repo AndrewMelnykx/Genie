@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { MessageType, SubmitHandlerProps } from "@/store/types";
 import { imagesFormSchema } from "@/constants/form";
 import { formSchema } from "@/components/custom-form";
+import { CustomFormHandler } from "./types";
 
 const useCustomForm = (schema = formSchema) => {
   return useForm<z.infer<typeof schema>>({
@@ -29,9 +30,7 @@ const handleDispatchModes = async (
         content: props.prerequisiteFormText ? `${props.prerequisiteFormText} ${prompt}` : prompt,
       };
       await dispatch(props.dispatchMessageAction([...props.messagesData, userMessage]));
-      if (props.featureTypeName) {
-        await dispatch(props.dispatchFeatureLimitAction(props.featureTypeName));
-      }
+
       break;
     }
     case "image": {
@@ -55,7 +54,7 @@ const useSubmitHandler = (props: SubmitHandlerProps) => {
   const dispatch = UseStoreDispatcher();
   const router = useRouter();
 
-  return async (values: z.infer<typeof imagesFormSchema | typeof formSchema>) => {
+  return async (values: z.infer<CustomFormHandler>) => {
     try {
       await handleDispatchModes(props, values.prompt, dispatch);
     } catch (error) {

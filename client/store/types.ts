@@ -27,10 +27,8 @@ type SubmitHandlerProps =
   | {
       mode: "conversation-code";
       dispatchMessageAction: AsyncThunk<MessageType[], MessageType[], AppAsyncThunkConfig>;
-      dispatchFeatureLimitAction: AsyncThunk<number, string, AppAsyncThunkConfig>;
       messagesData: MessageType[];
       prerequisiteFormText?: string;
-      featureTypeName?: string;
     }
   | {
       mode: "image";

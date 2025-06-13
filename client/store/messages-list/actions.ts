@@ -78,7 +78,6 @@ export const setVideoData = (videoData: string) => ({
 
 const fetchApiLimitCount = createAsyncThunk<number, string>(FETCH_LIMIT, async feature => {
   const response = await axios.get(`${API_LIMIT}?feature=${feature}`);
-  // console.log("API DATA", response.data);
   return response.data.count;
 });
 

@@ -13,18 +13,34 @@ import { useSelector } from "react-redux";
 
 import { conversationMessagesDataSelector } from "@/store/messages-list/selectors";
 import { ConversationMessages } from "@/components/messages";
-import { fetchMessagesList } from "@/store/messages-list/actions";
+import { fetchApiLimitCount, fetchMessagesList } from "@/store/messages-list/actions";
 import { useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
+import { UseStoreDispatcher } from "@/store/index";
+import { FeatureType } from "@/helpers/constants/api";
 
 const ConversationPage = () => {
   const form = useCustomForm();
   const messagesData = useSelector(conversationMessagesDataSelector);
-  const onSubmit = useSubmitHandler({
+  const dispatch = UseStoreDispatcher();
+
+  const onMessageSending = useSubmitHandler({
     mode: "conversation-code",
     messagesData: messagesData,
-    dispatchAction: fetchMessagesList,
+    dispatchMessageAction: fetchMessagesList,
     prerequisiteFormText: "",
   });
+
+  //reate universal func with a feature as a param and use submit for it
+  // like;
+
+  // const useHandleSubmitFunction = (onMessageSendingFunc,featureName)=>{
+  // await dispatch(fetchApilimitCount(featureName))
+  // }
+
+  // const handleSubmit = async (featureName: string): Promise<void> => {
+  //   onMessageSending;
+  //   await dispatch(fetchApiLimitCount(featureName));
+  // };
 
   const isLoading = form.formState.isSubmitting;
   const ifMessagesEmpty = messagesData.length === 0 && !isLoading;
@@ -40,7 +56,11 @@ const ConversationPage = () => {
       />
       <div className="px-4 lg:px-8">
         <div>
-          <CustomForm form={form} onSubmit={onSubmit} placeholder="How do  I see in the dark?" />
+          <CustomForm
+            form={form}
+            onSubmit={onMessageSending}
+            placeholder="How do  I see in the dark?"
+          />
         </div>
         <div className="space-y-4 mt-4">
           {isLoading && (

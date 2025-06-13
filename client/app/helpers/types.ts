@@ -1,10 +1,13 @@
 import { RootState, StoreDispatcherTypes } from "@/store/index";
+import { imagesFormSchema } from "./constants/form";
+import { formSchema } from "@/components/custom-form";
 
 interface ConversationMessage {
   role: "user" | "system";
   content: string;
 }
 
+type CustomFormHandler = typeof imagesFormSchema | typeof formSchema;
 type AppAsyncThunkConfig = {
   dispatch: StoreDispatcherTypes;
   state: RootState;
@@ -28,4 +31,4 @@ interface GeminiImageResponse {
     };
   }[];
 }
-export type { AppAsyncThunkConfig, GeminiImageResponse, ConversationMessage };
+export type { AppAsyncThunkConfig, GeminiImageResponse, ConversationMessage, CustomFormHandler };
