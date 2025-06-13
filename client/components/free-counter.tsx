@@ -3,38 +3,22 @@
 import { apiLimitCountSelector } from "@/store/messages-list/selectors";
 import { useSelector } from "react-redux";
 import { UseStoreDispatcher } from "../store";
-import { useEffect, useState } from "react";
 import { fetchApiLimitCount } from "@/store/messages-list/actions";
 import { Card, CardContent } from "./ui/card";
 import {
   FEATURE_REQUEST_LIMITS_BY_NAME,
   STABLE_FEATURE_LIMIT_NUMBER,
 } from "@/helpers/constants/api";
+import { useEffect } from "react";
 
-const FreeCounter = ({
-  featureType,
-}: {
-  featureType: keyof typeof FEATURE_REQUEST_LIMITS_BY_NAME;
-}) => {
-  const [mounted, setMounted] = useState(false);
+const FreeCounter = ({ featureType }: { featureType: string }) => {
   const dispatch = UseStoreDispatcher();
   const apiCountData = useSelector(apiLimitCountSelector);
 
   useEffect(() => {
-    dispatch(fetchApiLimitCount());
-    setMounted(true);
-    console.log(apiCountData);
-    console.log("request is done well");
-  }, [dispatch]);
-  useEffect(() => {
-    if (mounted) {
-      dispatch(fetchApiLimitCount());
-      console.log("request is done well");
-    }
-  }, [apiCountData, dispatch]);
-  if (!mounted) {
-    return null;
-  }
+    dispatch(fetchApiLimitCount(featureType));
+  }, [featureType]);
+
   const maxCountByFeatureProp =
     FEATURE_REQUEST_LIMITS_BY_NAME[featureType] || STABLE_FEATURE_LIMIT_NUMBER;
 

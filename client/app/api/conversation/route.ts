@@ -1,10 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { incrementApiLimit, checkApiLimit, getApiLimitCount } from "@/lib/api-limit";
+import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { NextResponse } from "next/server";
 import { FeatureType } from "@/constants/api";
-import { UseStoreDispatcher } from "@/store/index";
-import { fetchApiLimitCount } from "@/store/messages-list/actions";
 
 interface MessageItem {
   role: string;
@@ -16,7 +14,6 @@ export async function POST(request: Request) {
     const { userId } = auth();
     const body = await request.json();
     const { messages }: { messages: MessageItem[] } = body;
-    const dispatch = UseStoreDispatcher();
 
     const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
     if (!apiKey) {
@@ -38,8 +35,6 @@ export async function POST(request: Request) {
       return new NextResponse("Free trial has expired", { status: 403 });
     }
     await incrementApiLimit(FeatureType.CONVERSATION);
-    // dispatch(fetchApiLimitCount());
-    await getApiLimitCount(FeatureType.CONVERSATION);
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });

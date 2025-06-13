@@ -15,6 +15,7 @@ import {
   FETCH_LIMIT,
   API_LIMIT,
 } from "@/constants/api";
+// import { ApiFeatureTypeKeyof } from "@/helpers/types";
 
 const fetchMessagesList = createAsyncThunk<MessageType[], MessageType[]>(
   FETCH_CONVERSATION_MESSAGES,
@@ -75,8 +76,9 @@ export const setVideoData = (videoData: string) => ({
   payload: videoData,
 });
 
-const fetchApiLimitCount = createAsyncThunk<number>(FETCH_LIMIT, async () => {
-  const response = await axios.get(API_LIMIT);
+const fetchApiLimitCount = createAsyncThunk<number, string>(FETCH_LIMIT, async feature => {
+  const response = await axios.get(`${API_LIMIT}?feature=${feature}`);
+  // console.log("API DATA", response.data);
   return response.data.count;
 });
 

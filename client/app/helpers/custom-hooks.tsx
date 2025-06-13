@@ -28,7 +28,10 @@ const handleDispatchModes = async (
         role: "user",
         content: props.prerequisiteFormText ? `${props.prerequisiteFormText} ${prompt}` : prompt,
       };
-      await dispatch(props.dispatchAction([...props.messagesData, userMessage]));
+      await dispatch(props.dispatchMessageAction([...props.messagesData, userMessage]));
+      if (props.featureTypeName) {
+        await dispatch(props.dispatchFeatureLimitAction(props.featureTypeName));
+      }
       break;
     }
     case "image": {

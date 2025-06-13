@@ -26,9 +26,11 @@ type SubmitMode = "conversation-code" | "image" | "music" | "video";
 type SubmitHandlerProps =
   | {
       mode: "conversation-code";
-      dispatchAction: AsyncThunk<MessageType[], MessageType[], AppAsyncThunkConfig>;
+      dispatchMessageAction: AsyncThunk<MessageType[], MessageType[], AppAsyncThunkConfig>;
+      dispatchFeatureLimitAction: AsyncThunk<number, string, AppAsyncThunkConfig>;
       messagesData: MessageType[];
       prerequisiteFormText?: string;
+      featureTypeName?: string;
     }
   | {
       mode: "image";

@@ -1,11 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 
 import prismadb from "./prisma.db";
-import {
-  FEATURE_REQUEST_LIMITS_BY_NAME,
-  FeatureType,
-  STABLE_FEATURE_LIMIT_NUMBER,
-} from "@/constants/api";
+import { FEATURE_REQUEST_LIMITS_BY_NAME, STABLE_FEATURE_LIMIT_NUMBER } from "@/constants/api";
 
 const incrementApiLimit = async (feature: string): Promise<void> => {
   const { userId } = auth();
@@ -39,7 +35,7 @@ const incrementApiLimit = async (feature: string): Promise<void> => {
   }
 };
 
-const checkApiLimit = async (feature: FeatureType) => {
+const checkApiLimit = async (feature: string) => {
   const { userId } = auth();
   if (!userId) {
     return false;
@@ -55,21 +51,21 @@ const checkApiLimit = async (feature: FeatureType) => {
   }
 };
 
-const getApiLimitCount = async (feature: FeatureType) => {
+const getApiLimitCount = async (feature: string) => {
   const { userId } = auth();
   if (!userId) {
-    return [];
+    return 0;
   }
-  const userApiLimit = await prismadb.userApiLimit.findMany({
+
+  const userApiLimit = await prismadb.userApiLimit.findUnique({
     where: {
-      userId,
-      feature,
+      userId_feature: {
+        userId,
+        feature,
+      },
     },
   });
 
-  return userApiLimit.map(limit => ({
-    feature: limit.feature,
-    count: limit.count,
-  }));
+  return userApiLimit?.count || 0;
 };
 export { incrementApiLimit, checkApiLimit, getApiLimitCount };

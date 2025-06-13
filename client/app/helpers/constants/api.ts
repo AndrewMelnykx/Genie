@@ -15,17 +15,16 @@ const IMAGE_API_LINK = "http://localhost:8000/generate-image";
 const MUSIC_API_LINK = "https://api.musicfy.lol/v1/generate-music";
 const VIDEO_API_LINK = "http://localhost:5000/generate_video";
 
-enum FeatureType {
-  CONVERSATION = "conversation",
-  IMAGE = "image",
-  VIDEO = "video",
-  MUSIC = "music",
-  CODE = "code",
-}
-
+const FeatureType = {
+  CONVERSATION: "conversation",
+  IMAGE: "image",
+  VIDEO: "video",
+  MUSIC: "music",
+  CODE: "code",
+};
 const BASIC_LINK_ENDING = FeatureType.CONVERSATION;
 
-const FEATURE_REQUEST_LIMITS_BY_NAME: Record<FeatureType, number> = {
+const FEATURE_REQUEST_LIMITS_BY_NAME: Record<string, number> = {
   [FeatureType.CONVERSATION]: 2,
   [FeatureType.IMAGE]: 3,
   [FeatureType.VIDEO]: 1,
@@ -33,7 +32,7 @@ const FEATURE_REQUEST_LIMITS_BY_NAME: Record<FeatureType, number> = {
   [FeatureType.CODE]: 5,
 };
 
-const LAST_SEGMENT_TO_FEATURE_TYPE: Record<string, FeatureType> = {
+const LAST_SEGMENT_TO_FEATURE_TYPE: Record<string, string> = {
   conversation: FeatureType.CONVERSATION,
   image: FeatureType.IMAGE,
   video: FeatureType.VIDEO,

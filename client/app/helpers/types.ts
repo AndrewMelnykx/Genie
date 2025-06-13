@@ -1,5 +1,10 @@
 import { RootState, StoreDispatcherTypes } from "@/store/index";
 
+interface ConversationMessage {
+  role: "user" | "system";
+  content: string;
+}
+
 type AppAsyncThunkConfig = {
   dispatch: StoreDispatcherTypes;
   state: RootState;
@@ -23,4 +28,4 @@ interface GeminiImageResponse {
     };
   }[];
 }
-export type { AppAsyncThunkConfig, GeminiImageResponse };
+export type { AppAsyncThunkConfig, GeminiImageResponse, ConversationMessage };
