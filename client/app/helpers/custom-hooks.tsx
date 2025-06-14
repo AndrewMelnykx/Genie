@@ -7,9 +7,8 @@ import { StoreDispatcherTypes, UseStoreDispatcher } from "@/store/index";
 import { useRouter } from "next/navigation";
 
 import { MessageType, SubmitHandlerProps } from "@/store/types";
-import { imagesFormSchema } from "@/constants/form";
 import { formSchema } from "@/components/custom-form";
-import { CustomFormHandler } from "./types";
+import { CustomFormHandler, DispatchingApiLimit, MessageValueType } from "./types";
 
 const useCustomForm = (schema = formSchema) => {
   return useForm<z.infer<typeof schema>>({
@@ -30,7 +29,6 @@ const handleDispatchModes = async (
         content: props.prerequisiteFormText ? `${props.prerequisiteFormText} ${prompt}` : prompt,
       };
       await dispatch(props.dispatchMessageAction([...props.messagesData, userMessage]));
-
       break;
     }
     case "image": {
@@ -50,6 +48,27 @@ const handleDispatchModes = async (
   }
 };
 
+const handleApiLimitDispatcher = async (
+  dispatch: StoreDispatcherTypes,
+  props: DispatchingApiLimit<MessageValueType>,
+) => {
+  dispatch(props.fetchingApiLimitCount(props.featureName));
+};
+
+const useApiLimitDispatcher = (props: DispatchingApiLimit<MessageValueType>) => {
+  const dispatch = UseStoreDispatcher();
+  const router = useRouter();
+  return async (values: z.infer<MessageValueType>) => {
+    try {
+      await props.submitHandlingPropFunction(values);
+      await handleApiLimitDispatcher(dispatch, props);
+    } catch (error) {
+      console.error("Error submitting:", error);
+    } finally {
+      router.refresh();
+    }
+  };
+};
 const useSubmitHandler = (props: SubmitHandlerProps) => {
   const dispatch = UseStoreDispatcher();
   const router = useRouter();
@@ -65,4 +84,4 @@ const useSubmitHandler = (props: SubmitHandlerProps) => {
   };
 };
 
-export { useCustomForm, useSubmitHandler };
+export { useCustomForm, useSubmitHandler, useApiLimitDispatcher };

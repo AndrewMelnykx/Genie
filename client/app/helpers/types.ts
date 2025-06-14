@@ -1,6 +1,8 @@
 import { RootState, StoreDispatcherTypes } from "@/store/index";
 import { imagesFormSchema } from "./constants/form";
 import { formSchema } from "@/components/custom-form";
+import { AsyncThunk } from "@reduxjs/toolkit";
+import { z } from "zod";
 
 interface ConversationMessage {
   role: "user" | "system";
@@ -8,6 +10,7 @@ interface ConversationMessage {
 }
 
 type CustomFormHandler = typeof imagesFormSchema | typeof formSchema;
+
 type AppAsyncThunkConfig = {
   dispatch: StoreDispatcherTypes;
   state: RootState;
@@ -31,4 +34,20 @@ interface GeminiImageResponse {
     };
   }[];
 }
-export type { AppAsyncThunkConfig, GeminiImageResponse, ConversationMessage, CustomFormHandler };
+
+type MessageValueType = typeof formSchema;
+
+interface DispatchingApiLimit<TSchema extends z.ZodTypeAny> {
+  submitHandlingPropFunction: (values: z.infer<TSchema>) => Promise<void>;
+  featureName: string;
+  fetchingApiLimitCount: AsyncThunk<number, string, AppAsyncThunkConfig>;
+}
+
+export type {
+  AppAsyncThunkConfig,
+  GeminiImageResponse,
+  ConversationMessage,
+  CustomFormHandler,
+  DispatchingApiLimit,
+  MessageValueType,
+};

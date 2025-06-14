@@ -14,14 +14,12 @@ import { useSelector } from "react-redux";
 import { conversationMessagesDataSelector } from "@/store/messages-list/selectors";
 import { ConversationMessages } from "@/components/messages";
 import { fetchApiLimitCount, fetchMessagesList } from "@/store/messages-list/actions";
-import { useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
-import { UseStoreDispatcher } from "@/store/index";
+import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
 import { FeatureType } from "@/helpers/constants/api";
 
 const ConversationPage = () => {
   const form = useCustomForm();
   const messagesData = useSelector(conversationMessagesDataSelector);
-  const dispatch = UseStoreDispatcher();
 
   const onMessageSending = useSubmitHandler({
     mode: "conversation-code",
@@ -30,17 +28,13 @@ const ConversationPage = () => {
     prerequisiteFormText: "",
   });
 
-  //reate universal func with a feature as a param and use submit for it
-  // like;
+  //Verify will it work with different types of messages and implement it to the all features
 
-  // const useHandleSubmitFunction = (onMessageSendingFunc,featureName)=>{
-  // await dispatch(fetchApilimitCount(featureName))
-  // }
-
-  // const handleSubmit = async (featureName: string): Promise<void> => {
-  //   onMessageSending;
-  //   await dispatch(fetchApiLimitCount(featureName));
-  // };
+  const onSubmitting = useApiLimitDispatcher({
+    submitHandlingPropFunction: onMessageSending,
+    featureName: FeatureType.CONVERSATION,
+    fetchingApiLimitCount: fetchApiLimitCount,
+  });
 
   const isLoading = form.formState.isSubmitting;
   const ifMessagesEmpty = messagesData.length === 0 && !isLoading;
@@ -58,7 +52,7 @@ const ConversationPage = () => {
         <div>
           <CustomForm
             form={form}
-            onSubmit={onMessageSending}
+            onSubmit={onSubmitting}
             placeholder="How do  I see in the dark?"
           />
         </div>

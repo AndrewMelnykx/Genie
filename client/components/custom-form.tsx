@@ -53,10 +53,7 @@ const CustomForm = <TSchema extends z.ZodTypeAny>({
             </FormItem>
           )}
         />
-        <Button
-          className="col-span-12  lg-col-span:2 w-full"
-          disabled={isLoading}
-        >
+        <Button className="col-span-12  lg-col-span:2 w-full" disabled={isLoading}>
           Generate
         </Button>
       </form>

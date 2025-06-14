@@ -15,7 +15,6 @@ import {
   FETCH_LIMIT,
   API_LIMIT,
 } from "@/constants/api";
-// import { ApiFeatureTypeKeyof } from "@/helpers/types";
 
 const fetchMessagesList = createAsyncThunk<MessageType[], MessageType[]>(
   FETCH_CONVERSATION_MESSAGES,
