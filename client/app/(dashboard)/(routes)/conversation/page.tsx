@@ -24,7 +24,7 @@ const ConversationPage = () => {
   const onMessageSending = useSubmitHandler({
     mode: "conversation-code",
     messagesData: messagesData,
-    dispatchMessageAction: fetchMessagesList,
+    dispatchAction: fetchMessagesList,
     prerequisiteFormText: "",
   });
 

@@ -12,20 +12,25 @@ import { Code } from "lucide-react";
 import { useSelector } from "react-redux";
 import { codeMessagesDataSelector } from "@/store/messages-list/selectors";
 
-import { useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
+import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
 
-import { fetchCodeMessagesList } from "@/store/messages-list/actions";
+import { fetchApiLimitCount, fetchCodeMessagesList } from "@/store/messages-list/actions";
 import { filterMessage } from "@/helpers/funcs";
-import { prerequisiteText } from "@/constants/api";
+import { FeatureType, prerequisiteText } from "@/constants/api";
 
 const CodePage = () => {
   const form = useCustomForm();
   const codeMessagesData = useSelector(codeMessagesDataSelector);
-  const onSubmit = useSubmitHandler({
+  const onMessageSending = useSubmitHandler({
     mode: "conversation-code",
     messagesData: codeMessagesData,
     dispatchAction: fetchCodeMessagesList,
     prerequisiteFormText: prerequisiteText,
+  });
+  const onSubmitting = useApiLimitDispatcher({
+    submitHandlingPropFunction: onMessageSending,
+    featureName: FeatureType.CODE,
+    fetchingApiLimitCount: fetchApiLimitCount,
   });
 
   const isLoading = form.formState.isSubmitting;
@@ -47,7 +52,7 @@ const CodePage = () => {
           <CustomForm
             form={form}
             placeholder="Create switching button with React"
-            onSubmit={onSubmit}
+            onSubmit={onSubmitting}
           />
         </div>
         <div className="space-y-4 mt-4">

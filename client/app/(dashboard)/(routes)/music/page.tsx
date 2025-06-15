@@ -14,18 +14,24 @@ import { Loader } from "@/components/laoder";
 import { useSelector } from "react-redux";
 
 import { musicDataSelector } from "@/store/messages-list/selectors";
-import { fetchMusic } from "@/store/messages-list/actions";
-import { useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
+import { fetchApiLimitCount, fetchMusic } from "@/store/messages-list/actions";
+import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
 import { MusicFile } from "@/store/types";
+import { FeatureType } from "@/helpers/constants/api";
 
 const MusicPage = () => {
   const form = useCustomForm();
   const musicData = useSelector(musicDataSelector);
 
-  const onSubmit = useSubmitHandler({
+  const onMessageSending = useSubmitHandler({
     mode: "music",
     musicData: [],
     dispatchAction: fetchMusic,
+  });
+  const onSubmitting = useApiLimitDispatcher({
+    submitHandlingPropFunction: onMessageSending,
+    featureName: FeatureType.MUSIC,
+    fetchingApiLimitCount: fetchApiLimitCount,
   });
 
   const isLoading = form.formState.isSubmitting;
@@ -42,7 +48,7 @@ const MusicPage = () => {
       />
       <div className="px-4 lg:px-8">
         <div>
-          <CustomForm form={form} onSubmit={onSubmit} placeholder="Moonlight Sonata" />
+          <CustomForm form={form} onSubmit={onSubmitting} placeholder="Moonlight Sonata" />
         </div>
         <div className="space-y-4 mt-4">
           {isLoading && (

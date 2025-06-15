@@ -14,9 +14,10 @@ import {
   // parsedSelector,
   videoDataSelector,
 } from "@/store/messages-list/selectors";
-import { fetchVideo } from "@/store/messages-list/actions";
-import { useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
+import { fetchApiLimitCount, fetchVideo } from "@/store/messages-list/actions";
+import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
 import { handlePushingStorage } from "@/store/messages-list/slice";
+import { FeatureType } from "@/helpers/constants/api";
 
 const VideoPage = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const VideoPage = () => {
   //   videoData: "",
   //   dispatchAction: fetchVideo,
   // });
-  const onSubmit = async () => {
+  const onMessageSending = async () => {
     try {
       const response = await fetch("/api/video", {
         method: "POST",
@@ -50,6 +51,11 @@ const VideoPage = () => {
       console.error("Error calling replicate:", error);
     }
   };
+  const onSubmitting = useApiLimitDispatcher({
+    submitHandlingPropFunction: onMessageSending,
+    featureName: FeatureType.CONVERSATION,
+    fetchingApiLimitCount: fetchApiLimitCount,
+  });
 
   // useEffect(() => {
   //   if (videoLinkFromRequest) {
@@ -82,7 +88,7 @@ const VideoPage = () => {
         bgColor="bg-orange-500/10"
       />
       <div className="px-4 lg:px-8">
-        <CustomForm form={form} onSubmit={onSubmit} placeholder="Pink ocean with a whale" />
+        <CustomForm form={form} onSubmit={onSubmitting} placeholder="Pink ocean with a whale" />
         <div className="space-y-4 mt-4">
           {isLoading && (
             <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
