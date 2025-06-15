@@ -25,7 +25,7 @@ const FeatureType = {
 const BASIC_LINK_ENDING = FeatureType.CONVERSATION;
 
 const FEATURE_REQUEST_LIMITS_BY_NAME: Record<string, number> = {
-  [FeatureType.CONVERSATION]: 2,
+  [FeatureType.CONVERSATION]: 7,
   [FeatureType.IMAGE]: 3,
   [FeatureType.VIDEO]: 1,
   [FeatureType.MUSIC]: 1,

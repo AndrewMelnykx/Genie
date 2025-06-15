@@ -10,6 +10,9 @@ import {
   STABLE_FEATURE_LIMIT_NUMBER,
 } from "@/helpers/constants/api";
 import { useEffect } from "react";
+import { Progress } from "./ui/progress";
+import { Button } from "./ui/button";
+import { Zap } from "lucide-react";
 
 const FreeCounter = ({ featureType }: { featureType: string }) => {
   const dispatch = UseStoreDispatcher();
@@ -17,10 +20,12 @@ const FreeCounter = ({ featureType }: { featureType: string }) => {
 
   useEffect(() => {
     dispatch(fetchApiLimitCount(featureType));
-  }, [featureType]);
+  }, [featureType, dispatch]);
 
   const maxCountByFeatureProp =
     FEATURE_REQUEST_LIMITS_BY_NAME[featureType] || STABLE_FEATURE_LIMIT_NUMBER;
+  const progressValueData =
+    (apiCountData / maxCountByFeatureProp) * 100 || STABLE_FEATURE_LIMIT_NUMBER;
 
   return (
     <div px-3 style={{ width: "90%", alignSelf: "center" }}>
@@ -28,9 +33,14 @@ const FreeCounter = ({ featureType }: { featureType: string }) => {
         <CardContent className="py-4">
           <div className="text-center text-sm text-white mb-4 space-y-2 ">
             <p>
-              {apiCountData} / {maxCountByFeatureProp} Free Generations{" "}
+              {apiCountData} / {maxCountByFeatureProp} Free Generations
             </p>
+            <Progress value={progressValueData} />
           </div>
+          <Button className="w-full" variant="premium">
+            Upgrade
+            <Zap className="w-4 h-4 ml-2 fill-white" />
+          </Button>
         </CardContent>
       </Card>
     </div>
