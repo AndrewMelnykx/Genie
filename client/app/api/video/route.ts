@@ -2,8 +2,8 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 // import { writeFile } from "fs/promises";
 import Replicate from "replicate";
-import { FeatureType } from "@/constants/api";
-import { input } from "@/constants/style";
+import { FeatureType } from "helpers/constants/api";
+import { input } from "helpers/constants/style";
 
 import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
 

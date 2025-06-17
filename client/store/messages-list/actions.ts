@@ -14,7 +14,7 @@ import {
   API_VIDEO,
   FETCH_LIMIT,
   API_LIMIT,
-} from "@/constants/api";
+} from "helpers/constants/api";
 
 const fetchMessagesList = createAsyncThunk<MessageType[], MessageType[]>(
   FETCH_CONVERSATION_MESSAGES,

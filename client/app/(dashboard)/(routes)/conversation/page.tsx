@@ -14,8 +14,8 @@ import { useSelector } from "react-redux";
 import { conversationMessagesDataSelector } from "@/store/messages-list/selectors";
 import { ConversationMessages } from "@/components/messages";
 import { fetchApiLimitCount, fetchMessagesList } from "@/store/messages-list/actions";
-import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
-import { FeatureType } from "@/helpers/constants/api";
+import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "helpers/custom-hooks";
+import { FeatureType } from "helpers/constants/api";
 
 const ConversationPage = () => {
   const form = useCustomForm();

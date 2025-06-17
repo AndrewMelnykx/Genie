@@ -6,14 +6,14 @@ import LogoImage from "@/images/lamp.png";
 
 import { cn } from "@/lib/utils";
 import { FreeCounter } from "@/components/free-counter";
-import { routes } from "@/constants/route";
+import { routes } from "helpers/constants/route";
 
-import { montserrat } from "@/helpers/constants/style";
-import { Cedarville, UncialAntiqua } from "@/helpers/fonts";
+import { montserrat } from "helpers/constants/style";
+import { Cedarville, UncialAntiqua } from "helpers/fonts";
 
 import { usePathname } from "next/navigation";
-import { getFeatureTypeFromUrl } from "@/helpers/funcs";
-import { BASIC_LINK_ENDING } from "@/helpers/constants/api";
+import { getFeatureTypeFromUrl } from "helpers/funcs";
+import { BASIC_LINK_ENDING } from "helpers/constants/api";
 
 const Sidebar = () => {
   const pathname = usePathname();

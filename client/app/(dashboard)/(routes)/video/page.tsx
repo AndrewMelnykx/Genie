@@ -15,9 +15,9 @@ import {
   videoDataSelector,
 } from "@/store/messages-list/selectors";
 import { fetchApiLimitCount, fetchVideo } from "@/store/messages-list/actions";
-import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
+import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "helpers/custom-hooks";
 import { handlePushingStorage } from "@/store/messages-list/slice";
-import { FeatureType } from "@/helpers/constants/api";
+import { FeatureType } from "helpers/constants/api";
 
 const VideoPage = () => {
   const dispatch = useDispatch();

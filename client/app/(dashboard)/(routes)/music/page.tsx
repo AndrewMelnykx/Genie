@@ -15,9 +15,9 @@ import { useSelector } from "react-redux";
 
 import { musicDataSelector } from "@/store/messages-list/selectors";
 import { fetchApiLimitCount, fetchMusic } from "@/store/messages-list/actions";
-import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "@/helpers/custom-hooks";
+import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "helpers/custom-hooks";
 import { MusicFile } from "@/store/types";
-import { FeatureType } from "@/helpers/constants/api";
+import { FeatureType } from "helpers/constants/api";
 
 const MusicPage = () => {
   const form = useCustomForm();

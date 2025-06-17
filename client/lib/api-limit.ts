@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 
 import prismadb from "./prisma.db";
-import { FEATURE_REQUEST_LIMITS_BY_NAME, STABLE_FEATURE_LIMIT_NUMBER } from "@/constants/api";
+import { FEATURE_REQUEST_LIMITS_BY_NAME, STABLE_FEATURE_LIMIT_NUMBER } from "helpers/constants/api";
 
 const incrementApiLimit = async (feature: string): Promise<void> => {
   const { userId } = auth();

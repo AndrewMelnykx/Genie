@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import axios from "axios";
-import { FeatureType, MUSIC_API_LINK } from "@/constants/api";
+import { FeatureType, MUSIC_API_LINK } from "helpers/constants/api";
 import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
 
 export async function POST(request: Request) {

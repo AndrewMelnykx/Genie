@@ -1,5 +1,5 @@
 import { MessageType } from "@/store/types";
-import { FeatureType, LAST_SEGMENT_TO_FEATURE_TYPE, prerequisiteText } from "@/constants/api";
+import { FeatureType, LAST_SEGMENT_TO_FEATURE_TYPE, prerequisiteText } from "helpers/constants/api";
 import { EnhancedGenerateContentResponse } from "@google/generative-ai";
 // import { ApiFeatureTypeKeyof } from "./types";
 

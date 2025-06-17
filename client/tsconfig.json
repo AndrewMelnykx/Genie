@@ -21,8 +21,8 @@
     "paths": {
       "@/lib/*": ["lib/*"],
       "@/components/*": ["components/*"],
-      "@/helpers/*": ["app/helpers/*"],
-      "@/constants/*": ["app/helpers/constants/*"],
+      "@/helpers/*": ["helpers/*"],
+      "@/constants/*": ["helpers/constants/*"],
       "@/store/*": ["store/*"],
       "@/images/*": ["assets/images/*"],
       "@/fonts/*": ["assets/fonts/*"]

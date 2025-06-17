@@ -1,4 +1,4 @@
-import { AppAsyncThunkConfig } from "@/helpers/types";
+import { AppAsyncThunkConfig } from "helpers/types";
 import { AsyncThunk } from "@reduxjs/toolkit";
 
 interface requestAIHandlingTypes {

@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 
-import { routes } from "@/constants/route";
+import { routes } from "helpers/constants/route";
 import { useRouter } from "next/navigation";
 
 const DashboardPage = () => {

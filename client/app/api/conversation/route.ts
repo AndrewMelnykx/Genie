@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { NextResponse } from "next/server";
-import { FeatureType } from "@/constants/api";
+import { FeatureType } from "helpers/constants/api";
 
 interface MessageItem {
   role: string;

@@ -9,7 +9,7 @@ import {
   fetchMusic,
   fetchVideo,
 } from "./actions";
-import { ZERO_USERS_REQUEST } from "@/helpers/constants/api";
+import { ZERO_USERS_REQUEST } from "helpers/constants/api";
 
 const initialAIDataState: requestAIHandlingTypes = {
   conversationMessages: [],
