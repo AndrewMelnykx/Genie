@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { UseStoreDispatcher } from "../store";
 import { fetchApiLimitCount } from "@/store/messages-list/actions";
 import { Card, CardContent } from "./ui/card";
-import { FEATURE_REQUEST_LIMITS_BY_NAME, STABLE_FEATURE_LIMIT_NUMBER } from "helpers/constants/api";
+import { FEATURE_REQUEST_LIMITS_BY_NAME, STABLE_FEATURE_LIMIT_NUMBER } from "@/constants/api";
 import { useEffect } from "react";
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
