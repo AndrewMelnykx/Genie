@@ -12,8 +12,8 @@ import { montserrat } from "helpers/constants/style";
 import { Cedarville, UncialAntiqua } from "helpers/fonts";
 
 import { usePathname } from "next/navigation";
-import { getFeatureTypeFromUrl } from "helpers/funcs";
 import { BASIC_LINK_ENDING } from "helpers/constants/api";
+import { getFeatureTypeFromUrl } from "@/helpers/validating-funcs";
 
 const Sidebar = () => {
   const pathname = usePathname();

@@ -12,11 +12,12 @@ import { Code } from "lucide-react";
 import { useSelector } from "react-redux";
 import { codeMessagesDataSelector } from "@/store/messages-list/selectors";
 
-import { useApiLimitDispatcher, useCustomForm, useSubmitHandler } from "helpers/custom-hooks";
-
 import { fetchApiLimitCount, fetchCodeMessagesList } from "@/store/messages-list/actions";
-import { filterMessage } from "helpers/funcs";
-import { FeatureType, prerequisiteText } from "helpers/constants/api";
+import { FeatureType, prerequisiteText } from "@/constants/api";
+import { useCustomForm } from "@/hooks/forms/useCustomForm";
+import { useSubmitHandler } from "@/hooks/state/useSubmitHandler";
+import { useApiLimitDispatcher } from "@/hooks/state/useApiLimitDispatcher";
+import { filterMessage } from "@/helpers/validating-funcs";
 
 const CodePage = () => {
   const form = useCustomForm();
