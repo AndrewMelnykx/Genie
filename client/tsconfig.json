@@ -23,6 +23,7 @@
       "@/components/*": ["components/*"],
       "@/helpers/*": ["helpers/*"],
       "@/constants/*": ["helpers/constants/*"],
+      "@/hooks/*": ["hooks/*"],
       "@/store/*": ["store/*"],
       "@/images/*": ["assets/images/*"],
       "@/fonts/*": ["assets/fonts/*"]
