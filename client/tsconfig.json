@@ -23,6 +23,8 @@
       "@/components/*": ["components/*"],
       "@/helpers/*": ["helpers/*"],
       "@/constants/*": ["helpers/constants/*"],
+      "@/validation-functions/*": ["helpers/validating-funcs/*"],
+      "@/state-functions/*": ["helpers/state-funcs/*"],
       "@/hooks/*": ["hooks/*"],
       "@/store/*": ["store/*"],
       "@/images/*": ["assets/images/*"],
