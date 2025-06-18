@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { MessageType, MusicFile, MusicGenerationRequest, VideoFileFullResponse } from "../types";
+import { MessageType, MusicFile, MusicGenerationRequest, VideoFileFullResponse } from "./types";
 import {
   API_CONVERSATION,
   API_CODE,
@@ -14,7 +14,7 @@ import {
   API_VIDEO,
   FETCH_LIMIT,
   API_LIMIT,
-} from "helpers/constants/api";
+} from "@/constants/api";
 
 const fetchMessagesList = createAsyncThunk<MessageType[], MessageType[]>(
   FETCH_CONVERSATION_MESSAGES,

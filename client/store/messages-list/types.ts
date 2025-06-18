@@ -1,16 +1,6 @@
 import { AppAsyncThunkConfig } from "helpers/types";
 import { AsyncThunk } from "@reduxjs/toolkit";
 
-// interface requestAIHandlingTypes {
-//   conversationMessages: MessageType[];
-//   codeMessages: MessageType[];
-//   imagesData: MessageType[];
-//   musicData: MusicFile[];
-//   videoData: VideoFileFullResponse | null;
-//   dataFromStorage: string;
-//   apiLimitCount: number;
-// }
-
 type RoleType = "user" | "system" | "bot";
 
 interface MessageType {

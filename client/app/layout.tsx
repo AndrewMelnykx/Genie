@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { StoreProvider } from "@/store/provider";
+import { ModalProvider } from "@/components/modal-provider";
 
 // Change fonts routes to aliases
 
@@ -32,6 +33,7 @@ export default function RootLayout({
       <StoreProvider>
         <html lang="en">
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            <ModalProvider />
             {children}
           </body>
         </html>

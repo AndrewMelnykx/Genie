@@ -42,7 +42,6 @@ const routes = [
     href: "/code",
     color: "text-emerald-500",
   },
-  ,
 ];
 
 export { routes };
