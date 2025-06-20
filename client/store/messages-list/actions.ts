@@ -1,4 +1,4 @@
-import { createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { MessageType, MusicFile, MusicGenerationRequest, VideoFileFullResponse } from "./types";
 import {
@@ -15,7 +15,8 @@ import {
   FETCH_LIMIT,
   API_LIMIT,
 } from "@/constants/api";
-import { RejectedValue } from "@/helpers/types";
+import { AppAsyncThunkConfig, RejectedValue } from "@/helpers/types";
+import { handleAxiosError } from "@/helpers/validating-funcs/error";
 const fetchMessagesList = createAsyncThunk<
   MessageType[],
   MessageType[],
@@ -25,16 +26,7 @@ const fetchMessagesList = createAsyncThunk<
     const response = await axios.post(API_CONVERSATION, { messages });
     return [...messages, response.data];
   } catch (err) {
-    if (axios.isAxiosError(err)) {
-      const errorMessage =
-        err.response?.data && typeof err.response.data === "string"
-          ? err.response.data
-          : "Unknown error";
-
-      return rejectWithValue({ error: errorMessage, statusCode: err.status });
-    }
-    console.log("You had an error !");
-    throw err;
+    return rejectWithValue(handleAxiosError(err));
   }
 });
 
@@ -45,44 +37,44 @@ const fetchCodeMessagesList = createAsyncThunk<MessageType[], MessageType[]>(
       const response = await axios.post(API_CODE, { messages });
       return [...messages, response.data];
     } catch (err) {
-      if (axios.isAxiosError(err) && err.response?.status === 403) {
-        const errorMessage =
-          err.response?.data && typeof err.response.data === "string"
-            ? err.response.data
-            : "Unknown error";
-
-        return rejectWithValue({ error: errorMessage, statusCode: err.status });
-      }
-      throw err;
+      return rejectWithValue(handleAxiosError(err));
     }
   },
 );
 
 const fetchImage = createAsyncThunk<MessageType[], { prompt: string; messages: MessageType[] }>(
   FETCH_IMAGE,
-  async ({ prompt, messages }) => {
-    const userMessage: MessageType = {
-      role: "user",
-      content: prompt,
-    };
+  async ({ prompt, messages }, { rejectWithValue }) => {
+    try {
+      const userMessage: MessageType = {
+        role: "user",
+        content: prompt,
+      };
 
-    const response = await axios.post(IMAGE_API_LINK, { prompt });
+      const response = await axios.post(IMAGE_API_LINK, { prompt });
 
-    const imageMessage: MessageType = {
-      role: "system",
-      content: response.data.content || "Here is your image",
-      image_data: response.data.image_data,
-      mime_type: response.data.mime_type || "image/png",
-    };
+      const imageMessage: MessageType = {
+        role: "system",
+        content: response.data.content || "Here is your image",
+        image_data: response.data.image_data,
+        mime_type: response.data.mime_type || "image/png",
+      };
 
-    return [...messages, userMessage, imageMessage];
+      return [...messages, userMessage, imageMessage];
+    } catch (err) {
+      return rejectWithValue(handleAxiosError(err));
+    }
   },
 );
 const fetchMusic = createAsyncThunk<MusicFile[], MusicGenerationRequest>(
   FETCH_MUSIC,
-  async musicData => {
-    const response = await axios.post(API_MUSIC, musicData);
-    return response.data;
+  async (musicData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(API_MUSIC, musicData);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(handleAxiosError(err));
+    }
   },
 );
 
@@ -90,10 +82,14 @@ const fetchMusic = createAsyncThunk<MusicFile[], MusicGenerationRequest>(
 
 const fetchVideo = createAsyncThunk<VideoFileFullResponse, { prompt: string }>(
   FETCH_VIDEO,
-  async ({ prompt }) => {
-    const response = await axios.post(API_VIDEO, { prompt });
+  async ({ prompt }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(API_VIDEO, { prompt });
 
-    return response.data;
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(handleAxiosError(err));
+    }
   },
 );
 export const setVideoData = (videoData: string) => ({
@@ -101,21 +97,14 @@ export const setVideoData = (videoData: string) => ({
   payload: videoData,
 });
 
-const fetchApiLimitCount = createAsyncThunk<number, string>(
+const fetchApiLimitCount = createAsyncThunk<number, string, AppAsyncThunkConfig>(
   FETCH_LIMIT,
   async (feature, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${API_LIMIT}?feature=${feature}`);
       return response.data.count;
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        const errorMessage =
-          err.response?.data && typeof err.response.data === "string"
-            ? err.response.data
-            : "Unknown error";
-
-        return rejectWithValue({ error: errorMessage, statusCode: err.status });
-      }
+      return rejectWithValue(handleAxiosError(err));
     }
   },
 );

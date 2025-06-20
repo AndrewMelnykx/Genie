@@ -17,9 +17,7 @@ const useSubmitHandler = (props: SubmitHandlerProps) => {
     try {
       await handleDispatchByModes(props, values.prompt, dispatch);
     } catch (error) {
-      console.log("Opening modal");
       proModal.onOpen();
-      console.error("Error submitting:", error);
     } finally {
       router.refresh();
     }

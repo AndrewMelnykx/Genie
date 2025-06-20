@@ -9,7 +9,6 @@ interface requestAIHandlingTypes {
   videoData: VideoFileFullResponse | null;
   dataFromStorage: string;
   apiLimitCount: number;
-  error?: RejectedValue;
 }
 
 export type { requestAIHandlingTypes };

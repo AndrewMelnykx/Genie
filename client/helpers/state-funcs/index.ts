@@ -17,15 +17,15 @@ const handleDispatchByModes = async (
       break;
     }
     case "image": {
-      await dispatch(props.dispatchAction({ prompt, messages: props.messagesData }));
+      await dispatch(props.dispatchAction({ prompt, messages: props.messagesData })).unwrap();
       break;
     }
     case "music": {
-      await dispatch(props.dispatchAction({ prompt }));
+      await dispatch(props.dispatchAction({ prompt })).unwrap();
       break;
     }
     case "video": {
-      await dispatch(props.dispatchAction({ prompt }));
+      await dispatch(props.dispatchAction({ prompt })).unwrap();
       break;
     }
     default:

@@ -14,7 +14,6 @@ type CustomFormHandler = typeof imagesFormSchema | typeof formSchema;
 type RejectedValue = {
   error: string;
   statusCode?: number;
-  // [key: string]: any;
 };
 
 type AppAsyncThunkConfig = {
