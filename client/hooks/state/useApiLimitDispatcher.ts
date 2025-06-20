@@ -9,11 +9,12 @@ import { z } from "zod";
 const useApiLimitDispatcher = (props: DispatchingApiLimit<MessageValueType>) => {
   const dispatch = UseStoreDispatcher();
   const router = useRouter();
+
   return async (values: z.infer<MessageValueType>) => {
     try {
       await props.submitHandlingPropFunction(values);
       await handleApiLimitDispatcher(dispatch, props);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error submitting:", error);
     } finally {
       router.refresh();

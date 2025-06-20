@@ -10,10 +10,12 @@ import { useEffect } from "react";
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
+import { useProModal } from "@/hooks/modals/useProModal";
 
 const FreeCounter = ({ featureType }: { featureType: string }) => {
   const dispatch = UseStoreDispatcher();
   const apiCountData = useSelector(apiLimitCountSelector);
+  const proModal = useProModal();
 
   useEffect(() => {
     dispatch(fetchApiLimitCount(featureType));
@@ -34,7 +36,7 @@ const FreeCounter = ({ featureType }: { featureType: string }) => {
             </p>
             <Progress value={progressValueData} />
           </div>
-          <Button className="w-full" variant="premium">
+          <Button className="w-full" variant="premium" onClick={proModal.onOpen}>
             Upgrade
             <Zap className="w-4 h-4 ml-2 fill-white" />
           </Button>

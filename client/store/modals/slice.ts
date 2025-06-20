@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ModalsInitialState } from "./types";
 
 const initialState: ModalsInitialState = {
-  isProModalVisible: true,
+  isProModalVisible: false,
 };
 
 const modalsSlice = createSlice({

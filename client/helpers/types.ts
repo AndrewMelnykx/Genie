@@ -11,15 +11,14 @@ interface ConversationMessage {
 
 type CustomFormHandler = typeof imagesFormSchema | typeof formSchema;
 
+type RejectedValue = {
+  error: string;
+  statusCode?: number;
+  // [key: string]: any;
+};
+
 type AppAsyncThunkConfig = {
-  dispatch: StoreDispatcherTypes;
-  state: RootState;
-  extra?: unknown;
-  rejectValue?: unknown;
-  serializedErrorType?: unknown;
-  pendingMeta?: unknown;
-  fulfilledMeta?: unknown;
-  rejectedMeta?: unknown;
+  rejectValue: RejectedValue;
 };
 
 interface GeminiImageResponse {
@@ -50,4 +49,5 @@ export type {
   CustomFormHandler,
   DispatchingApiLimit,
   MessageValueType,
+  RejectedValue,
 };

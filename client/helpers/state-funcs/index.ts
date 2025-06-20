@@ -1,6 +1,6 @@
 import { StoreDispatcherTypes } from "@/store/index";
 import { DispatchingApiLimit, MessageValueType } from "../types";
-import { MessageType, SubmitHandlerProps } from "@/store/types";
+import { MessageType, SubmitHandlerProps } from "@/store/messages-list/types";
 
 const handleDispatchByModes = async (
   props: SubmitHandlerProps,
@@ -13,7 +13,7 @@ const handleDispatchByModes = async (
         role: "user",
         content: props.prerequisiteFormText ? `${props.prerequisiteFormText} ${prompt}` : prompt,
       };
-      await dispatch(props.dispatchAction([...props.messagesData, userMessage]));
+      await dispatch(props.dispatchAction([...props.messagesData, userMessage])).unwrap();
       break;
     }
     case "image": {

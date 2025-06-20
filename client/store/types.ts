@@ -1,3 +1,4 @@
+import { RejectedValue } from "@/helpers/types";
 import { MessageType, MusicFile, VideoFileFullResponse } from "./messages-list/types";
 
 interface requestAIHandlingTypes {
@@ -8,6 +9,7 @@ interface requestAIHandlingTypes {
   videoData: VideoFileFullResponse | null;
   dataFromStorage: string;
   apiLimitCount: number;
+  error?: RejectedValue;
 }
 
 export type { requestAIHandlingTypes };

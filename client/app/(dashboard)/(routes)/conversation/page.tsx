@@ -30,8 +30,6 @@ const ConversationPage = () => {
     prerequisiteFormText: "",
   });
 
-  //Verify will it work with different types of messages and implement it to the all features
-
   const onSubmitting = useApiLimitDispatcher({
     submitHandlingPropFunction: onMessageSending,
     featureName: FeatureType.CONVERSATION,

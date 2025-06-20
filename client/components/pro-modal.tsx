@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogFooter,
 } from "@/components/ui/dialog";
 
 import { useProModal } from "@/hooks/modals/useProModal";
@@ -13,7 +14,8 @@ import { Badge } from "@/components/ui/badge";
 import { routes } from "@/helpers/constants/route";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
+import { Check, Zap } from "lucide-react";
+import { Button } from "./ui/button";
 
 const ProModal = () => {
   const proModal = useProModal();
@@ -47,6 +49,11 @@ const ProModal = () => {
               ) : null,
             )}
           </DialogDescription>
+          <DialogFooter>
+            <Button size={"lg"} variant={"premium"} className="w-full mt-2 ">
+              Upgrade <Zap className="w-4 h-4 ml-2 fill-white" />
+            </Button>
+          </DialogFooter>
         </DialogHeader>
       </DialogContent>
     </Dialog>

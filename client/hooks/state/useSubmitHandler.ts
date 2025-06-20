@@ -3,18 +3,22 @@
 import { handleDispatchByModes } from "@/helpers/state-funcs";
 import { CustomFormHandler } from "@/helpers/types";
 import { UseStoreDispatcher } from "@/store/index";
-import { SubmitHandlerProps } from "@/store/types";
+import { SubmitHandlerProps } from "@/store/messages-list/types";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
+import { useProModal } from "@/hooks/modals/useProModal";
 
 const useSubmitHandler = (props: SubmitHandlerProps) => {
   const dispatch = UseStoreDispatcher();
   const router = useRouter();
+  const proModal = useProModal();
 
   return async (values: z.infer<CustomFormHandler>) => {
     try {
       await handleDispatchByModes(props, values.prompt, dispatch);
     } catch (error) {
+      console.log("Opening modal");
+      proModal.onOpen();
       console.error("Error submitting:", error);
     } finally {
       router.refresh();
