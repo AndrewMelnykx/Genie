@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { RejectedValue } from "../types";
+import { statues } from "../constants/api";
 
 const handleAxiosError = (err: unknown): RejectedValue => {
   if (axios.isAxiosError(err)) {
@@ -10,12 +11,12 @@ const handleAxiosError = (err: unknown): RejectedValue => {
         : "Unknown error";
     return {
       error: errorMessage,
-      statusCode: err.response?.status || 500,
+      statusCode: err.response?.status || statues.internalServerError,
     };
   }
   return {
     error: "Unexpected error",
-    statusCode: 500,
+    statusCode: statues.internalServerError,
   };
 };
 

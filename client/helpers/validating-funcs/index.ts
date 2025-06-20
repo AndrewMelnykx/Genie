@@ -1,6 +1,6 @@
-import { MessageType } from "@/store/types";
 import { LAST_SEGMENT_TO_FEATURE_TYPE, prerequisiteText } from "helpers/constants/api";
 import { EnhancedGenerateContentResponse } from "@google/generative-ai";
+import { MessageType } from "@/store/messages-list/types";
 
 const filterMessage = (codeMessagesData: MessageType[]) => {
   const filteredMessages = codeMessagesData.filter(message => {

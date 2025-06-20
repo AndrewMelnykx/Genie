@@ -17,20 +17,19 @@ import {
 } from "@/constants/api";
 import { AppAsyncThunkConfig, RejectedValue } from "@/helpers/types";
 import { handleAxiosError } from "@/helpers/validating-funcs/error";
-const fetchMessagesList = createAsyncThunk<
-  MessageType[],
-  MessageType[],
-  { rejectValue: RejectedValue }
->(FETCH_CONVERSATION_MESSAGES, async (messages, { rejectWithValue }) => {
-  try {
-    const response = await axios.post(API_CONVERSATION, { messages });
-    return [...messages, response.data];
-  } catch (err) {
-    return rejectWithValue(handleAxiosError(err));
-  }
-});
+const fetchMessagesList = createAsyncThunk<MessageType[], MessageType[], AppAsyncThunkConfig>(
+  FETCH_CONVERSATION_MESSAGES,
+  async (messages, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(API_CONVERSATION, { messages });
+      return [...messages, response.data];
+    } catch (err) {
+      return rejectWithValue(handleAxiosError(err));
+    }
+  },
+);
 
-const fetchCodeMessagesList = createAsyncThunk<MessageType[], MessageType[]>(
+const fetchCodeMessagesList = createAsyncThunk<MessageType[], MessageType[], AppAsyncThunkConfig>(
   FETCH_CODE_MESSAGES,
   async (messages, { rejectWithValue }) => {
     try {
@@ -66,7 +65,7 @@ const fetchImage = createAsyncThunk<MessageType[], { prompt: string; messages: M
     }
   },
 );
-const fetchMusic = createAsyncThunk<MusicFile[], MusicGenerationRequest>(
+const fetchMusic = createAsyncThunk<MusicFile[], MusicGenerationRequest, AppAsyncThunkConfig>(
   FETCH_MUSIC,
   async (musicData, { rejectWithValue }) => {
     try {
@@ -80,7 +79,7 @@ const fetchMusic = createAsyncThunk<MusicFile[], MusicGenerationRequest>(
 
 //HANDLE  video request
 
-const fetchVideo = createAsyncThunk<VideoFileFullResponse, { prompt: string }>(
+const fetchVideo = createAsyncThunk<VideoFileFullResponse, { prompt: string }, AppAsyncThunkConfig>(
   FETCH_VIDEO,
   async ({ prompt }, { rejectWithValue }) => {
     try {

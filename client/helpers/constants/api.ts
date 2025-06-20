@@ -39,12 +39,21 @@ const LAST_SEGMENT_TO_FEATURE_TYPE: Record<string, string> = {
   music: FeatureType.MUSIC,
   code: FeatureType.CODE,
 };
+const statues = {
+  success: 200,
+  forbidden: 403,
+  notFound: 404,
+  internalServerError: 500,
+  unauthorized: 401,
+  badRequestError: 400,
+};
 const STABLE_FEATURE_LIMIT_NUMBER = 2;
 const ZERO_USERS_REQUEST = 0;
 const prerequisiteText =
   "Please only provide the code, and no additional explanations, and after code part explain what you wrote for a beginner in coding , do it relying on complexity of the request.Do a margin for one row after code part";
 
 export {
+  statues,
   API_CONVERSATION,
   API_CODE,
   API_MUSIC,
