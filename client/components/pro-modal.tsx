@@ -18,6 +18,7 @@ import { Check, Zap } from "lucide-react";
 import { Button } from "./ui/button";
 
 const ProModal = () => {
+  // If it will be needed , then add useProModal into ,mobile side bar
   const proModal = useProModal();
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
