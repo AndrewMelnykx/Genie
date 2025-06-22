@@ -4,8 +4,7 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import prismadb from "@/lib/prisma.db";
-import { statues } from "@/helpers/constants/api";
-import { url } from "inspector";
+import { statuses } from "@/helpers/constants/api";
 
 const settingsUrl = absoluteUrl("/settings");
 
@@ -15,7 +14,7 @@ export async function GET() {
     const user = await currentUser();
 
     if (!userId || !user) {
-      return new NextResponse("Unauthorized", { status: statues.unauthorized });
+      return new NextResponse("Unauthorized", { status: statuses.unauthorized });
     }
     const userSubscription = await prismadb.userSubscription.findUnique({
       where: { userId },
@@ -57,6 +56,6 @@ export async function GET() {
     return new NextResponse(JSON.stringify({ url: checkUserStripeSession.url }));
   } catch (err) {
     console.error("[STRIPE_ERROR]", err);
-    return new NextResponse("Internal error", { status: statues.internalServerError });
+    return new NextResponse("Internal error", { status: statuses.internalServerError });
   }
 }

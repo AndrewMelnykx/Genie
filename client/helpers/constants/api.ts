@@ -39,7 +39,7 @@ const LAST_SEGMENT_TO_FEATURE_TYPE: Record<string, string> = {
   music: FeatureType.MUSIC,
   code: FeatureType.CODE,
 };
-const statues = {
+const statuses = {
   success: 200,
   forbidden: 403,
   notFound: 404,
@@ -53,7 +53,7 @@ const prerequisiteText =
   "Please only provide the code, and no additional explanations, and after code part explain what you wrote for a beginner in coding , do it relying on complexity of the request.Do a margin for one row after code part";
 
 export {
-  statues,
+  statuses,
   API_CONVERSATION,
   API_CODE,
   API_MUSIC,

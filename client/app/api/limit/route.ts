@@ -1,7 +1,7 @@
 import { getApiLimitCount } from "@/lib/api-limit";
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { statues } from "@/helpers/constants/api";
+import { statuses } from "@/helpers/constants/api";
 
 export async function GET(request: Request) {
   try {
@@ -10,10 +10,10 @@ export async function GET(request: Request) {
     const feature = searchParams.get("feature");
 
     if (!userId) {
-      return new NextResponse("Unauthorized", { status: statues.unauthorized });
+      return new NextResponse("Unauthorized", { status: statuses.unauthorized });
     }
     if (!feature) {
-      return new NextResponse("Missing feature parameter", { status: statues.badRequestError });
+      return new NextResponse("Missing feature parameter", { status: statuses.badRequestError });
     }
     const apiLimitCount = await getApiLimitCount(feature);
 

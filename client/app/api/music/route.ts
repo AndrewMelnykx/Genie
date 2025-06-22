@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import axios from "axios";
-import { FeatureType, MUSIC_API_LINK, statues } from "helpers/constants/api";
+import { FeatureType, MUSIC_API_LINK, statuses } from "helpers/constants/api";
 import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
 
 export async function POST(request: Request) {
@@ -12,11 +12,11 @@ export async function POST(request: Request) {
     const { prompt } = body;
 
     if (!userId) {
-      return new NextResponse("Unauthorized", { status: statues.unauthorized });
+      return new NextResponse("Unauthorized", { status: statuses.unauthorized });
     }
     const freeTrial = await checkApiLimit(FeatureType.MUSIC);
     if (!freeTrial) {
-      return new NextResponse("Free trial has expired", { status: statues.forbidden });
+      return new NextResponse("Free trial has expired", { status: statuses.forbidden });
     }
     await incrementApiLimit(FeatureType.MUSIC);
     const response = await axios.post(
@@ -35,6 +35,6 @@ export async function POST(request: Request) {
     return NextResponse.json(response.data);
   } catch (error) {
     console.error("Failed to process music generation", error);
-    return new NextResponse("Internal Server Error", { status: statues.internalServerError });
+    return new NextResponse("Internal Server Error", { status: statuses.internalServerError });
   }
 }

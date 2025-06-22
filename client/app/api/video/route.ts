@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 // import { writeFile } from "fs/promises";
 import Replicate from "replicate";
-import { FeatureType, statues } from "helpers/constants/api";
+import { FeatureType, statuses } from "helpers/constants/api";
 import { input } from "helpers/constants/style";
 
 import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
@@ -18,11 +18,11 @@ export async function POST(request: Request) {
     const { prompt } = body;
 
     if (!userId) {
-      return new NextResponse("Unauthorized", { status: statues.unauthorized });
+      return new NextResponse("Unauthorized", { status: statuses.unauthorized });
     }
     const freeTrial = await checkApiLimit(FeatureType.VIDEO);
     if (!freeTrial) {
-      return new NextResponse("Free trial has expired", { status: statues.forbidden });
+      return new NextResponse("Free trial has expired", { status: statuses.forbidden });
     }
     await incrementApiLimit(FeatureType.VIDEO);
     const response = await replicate.run(
@@ -34,6 +34,6 @@ export async function POST(request: Request) {
     return NextResponse.json(response);
   } catch (error) {
     console.error("Failed to process video generation", error);
-    return new NextResponse("Internal Server Error", { status: statues.badRequestError });
+    return new NextResponse("Internal Server Error", { status: statuses.badRequestError });
   }
 }

@@ -1,4 +1,4 @@
-import { FeatureType } from "helpers/constants/api";
+import { FeatureType, statuses } from "helpers/constants/api";
 import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
 import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -17,20 +17,20 @@ export async function POST(request: Request) {
     const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
     if (!apiKey) {
       return new NextResponse("GEMINI_API_KEY is not defined!", {
-        status: 500,
+        status: statuses.internalServerError,
       });
     }
 
     if (!userId) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new NextResponse("Unauthorized", { status: statuses.unauthorized });
     }
 
     if (!messages || !Array.isArray(messages)) {
-      return new NextResponse("Invalid messages payload", { status: 400 });
+      return new NextResponse("Invalid messages payload", { status: statuses.badRequestError });
     }
     const freeTrial = await checkApiLimit(FeatureType.CODE);
     if (!freeTrial) {
-      return new NextResponse("Free trial has expired", { status: 403 });
+      return new NextResponse("Free trial has expired", { status: statuses.forbidden });
     }
     await incrementApiLimit(FeatureType.CODE);
 
@@ -46,7 +46,9 @@ export async function POST(request: Request) {
 
     const lastUserMessage = messages[messages.length - 1]?.content;
     if (!lastUserMessage) {
-      return new NextResponse("No user message to respond to", { status: 400 });
+      return new NextResponse("No user message to respond to", {
+        status: statuses.badRequestError,
+      });
     }
 
     const result = await chat.sendMessage(lastUserMessage);
@@ -57,6 +59,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Failed to process code generation", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
+    return new NextResponse("Internal Server Error", { status: statuses.internalServerError });
   }
 }

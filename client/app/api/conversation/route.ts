@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { NextResponse } from "next/server";
-import { FeatureType, statues } from "helpers/constants/api";
+import { FeatureType, statuses } from "helpers/constants/api";
 
 interface MessageItem {
   role: string;
@@ -18,21 +18,21 @@ export async function POST(request: Request) {
     const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
     if (!apiKey) {
       return new NextResponse("GEMINI_API_KEY is not defined!", {
-        status: statues.internalServerError,
+        status: statuses.internalServerError,
       });
     }
 
     if (!userId) {
-      return new NextResponse("Unauthorized", { status: statues.unauthorized });
+      return new NextResponse("Unauthorized", { status: statuses.unauthorized });
     }
 
     if (!messages || !Array.isArray(messages)) {
-      return new NextResponse("Invalid messages payload", { status: statues.badRequestError });
+      return new NextResponse("Invalid messages payload", { status: statuses.badRequestError });
     }
 
     const freeTrial = await checkApiLimit(FeatureType.CONVERSATION);
     if (!freeTrial) {
-      return NextResponse.json({ error: "Free trial expired" }, { status: statues.forbidden });
+      return NextResponse.json({ error: "Free trial expired" }, { status: statuses.forbidden });
     }
     await incrementApiLimit(FeatureType.CONVERSATION);
 
@@ -50,7 +50,9 @@ export async function POST(request: Request) {
 
     const lastUserMessage = messages[messages.length - 1]?.content;
     if (!lastUserMessage) {
-      return new NextResponse("No user message to respond to", { status: statues.badRequestError });
+      return new NextResponse("No user message to respond to", {
+        status: statuses.badRequestError,
+      });
     }
 
     const result = await chat.sendMessage(lastUserMessage);
@@ -61,6 +63,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Failed to process text generation", error);
-    return new NextResponse("Internal Server Error", { status: statues.internalServerError });
+    return new NextResponse("Internal Server Error", { status: statuses.internalServerError });
   }
 }
