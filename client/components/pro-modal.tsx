@@ -16,10 +16,18 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Check, Zap } from "lucide-react";
 import { Button } from "./ui/button";
+import { UseStoreDispatcher } from "../store";
+import { fetchStripe } from "@/store/modals/actions";
 
 const ProModal = () => {
   // If it will be needed , then add useProModal into ,mobile side bar
   const proModal = useProModal();
+  const dispatch = UseStoreDispatcher();
+
+  const handleSubscription = () => {
+    dispatch(fetchStripe());
+  };
+
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent>
@@ -51,7 +59,12 @@ const ProModal = () => {
             )}
           </DialogDescription>
           <DialogFooter>
-            <Button size={"lg"} variant={"premium"} className="w-full mt-2 ">
+            <Button
+              size={"lg"}
+              variant={"premium"}
+              className="w-full mt-2 "
+              onClick={handleSubscription}
+            >
               Upgrade <Zap className="w-4 h-4 ml-2 fill-white" />
             </Button>
           </DialogFooter>

@@ -3,6 +3,7 @@ const API_CODE = "/api/code";
 const API_MUSIC = "/api/music";
 const API_VIDEO = "/api/video";
 const API_LIMIT = "/api/limit";
+const API_STRIPE = "/api/stripe";
 
 const FETCH_CONVERSATION_MESSAGES = "fetchConversationMessagesList";
 const FETCH_CODE_MESSAGES = "fetchCodeMessagesList";
@@ -10,6 +11,7 @@ const FETCH_IMAGE = "fetchImage";
 const FETCH_MUSIC = "fetchMusic";
 const FETCH_VIDEO = "fetchVideo";
 const FETCH_LIMIT = "fetchLimit";
+const FETCH_STRIPE = "fetchStripe";
 
 const IMAGE_API_LINK = "http://localhost:8000/generate-image";
 const MUSIC_API_LINK = "https://api.musicfy.lol/v1/generate-music";
@@ -75,4 +77,6 @@ export {
   FETCH_LIMIT,
   LAST_SEGMENT_TO_FEATURE_TYPE,
   BASIC_LINK_ENDING,
+  API_STRIPE,
+  FETCH_STRIPE,
 };
