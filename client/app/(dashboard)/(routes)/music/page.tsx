@@ -38,14 +38,15 @@ const MusicPage = () => {
 
   const isLoading = form.formState.isSubmitting;
   const ifMessagesEmpty = musicData.length === 0 && !isLoading;
-
+  //FIX COLORS OF THE ICONS
+  //POSSIBLE SOLUTION IS ROUTE FIXING
   return (
     <div style={{ color: "black", fontSize: "20px" }}>
       <Heading
         title="Music Generation"
         description="Make music from your prompts"
         icon={Music}
-        iconColor="text-emerald-500"
+        iconColor="text-yellow-600"
         bgColor="bg-emerald-500/10"
       />
       <div className="px-4 lg:px-8">

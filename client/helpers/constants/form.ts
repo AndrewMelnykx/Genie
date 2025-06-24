@@ -8,4 +8,6 @@ const imagesFormSchema = z.object({
   resolution: z.string().min(1),
 });
 
-export { imagesFormSchema };
+const DAY_IN_MS = 86_400_00;
+
+export { imagesFormSchema, DAY_IN_MS };
