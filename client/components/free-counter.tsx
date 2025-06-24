@@ -11,11 +11,24 @@ import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
 import { useProModal } from "@/hooks/modals/useProModal";
+import { checkSubscription } from "@/lib/subscription";
 
-const FreeCounter = ({ featureType }: { featureType: string }) => {
+// FIX LAODING PAGE AN IN THE SAME TIME LOADING THE COUNTS FOR IT
+//ADD THIS PRO PLAN TO THE STATE
+
+const FreeCounter = async ({
+  featureType,
+  isProPlan,
+}: {
+  featureType: string;
+  isProPlan: false;
+}) => {
   const dispatch = UseStoreDispatcher();
   const apiCountData = useSelector(apiLimitCountSelector);
   const proModal = useProModal();
+  if (isProPlan) {
+    return null;
+  }
 
   useEffect(() => {
     dispatch(fetchApiLimitCount(featureType));

@@ -13,8 +13,12 @@ import { useSelector } from "react-redux";
 
 import { imagesDataSelector } from "@/store/messages-list/selectors";
 import { fetchImage } from "@/store/messages-list/actions";
-import { useCustomForm, useSubmitHandler } from "helpers/custom-hooks";
+import { useSubmitHandler } from "@/hooks/state/useSubmitHandler";
+import { useCustomForm } from "@/hooks/forms/useCustomForm";
+
 import CustomImage from "@/components/custom-image";
+
+//FIX CONFIG IN DISPATCHING
 
 const ImagePage = () => {
   const form = useCustomForm();

@@ -27,7 +27,7 @@ const ProModal = () => {
   const handleSubscription = () => {
     dispatch(fetchStripe());
   };
-
+  //POSSIBLY SOLUTION IS CHANGE bg to bgColor IN ROUTE NAMING
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent>
@@ -48,7 +48,7 @@ const ProModal = () => {
                   className="p-3 border-black/5 flex items-center justify justify-between"
                 >
                   <div className="flex items-center gap-x-4 ">
-                    <div className={cn("p-2 w-fit rounded-lg", route?.bg)}>
+                    <div className={cn("p-2 w-fit rounded-lg", route?.bgColor)}>
                       <route.icon className={cn("w-6 h-6", route?.color)} />
                     </div>
                     <div className="font-semibold text-sm">{route.label}</div>
