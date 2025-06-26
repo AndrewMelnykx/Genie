@@ -27,6 +27,7 @@ type SubmitHandlerProps =
         { prompt: string; messages: MessageType[] },
         AppAsyncThunkConfig
       >;
+
       messagesData: MessageType[];
     }
   | {

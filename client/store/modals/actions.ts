@@ -1,4 +1,9 @@
-import { FETCH_STRIPE, API_STRIPE } from "@/helpers/constants/api";
+import {
+  FETCH_STRIPE,
+  API_STRIPE,
+  FETCH_SUBSCRIPTION,
+  API_SUBSCRIPTION,
+} from "@/helpers/constants/api";
 import { handleAxiosError } from "@/helpers/validating-funcs/error";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -14,4 +19,13 @@ const fetchStripe = createAsyncThunk(FETCH_STRIPE, async (_, { rejectWithValue }
   }
 });
 
-export { fetchStripe };
+const fetchSubscription = createAsyncThunk(FETCH_SUBSCRIPTION, async (_, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(API_SUBSCRIPTION);
+    return response.data;
+  } catch (error) {
+    rejectWithValue(handleAxiosError(error));
+  }
+});
+
+export { fetchStripe, fetchSubscription };

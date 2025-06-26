@@ -13,15 +13,15 @@ import { Zap } from "lucide-react";
 import { useProModal } from "@/hooks/modals/useProModal";
 import { checkSubscription } from "@/lib/subscription";
 
-// FIX LAODING PAGE AN IN THE SAME TIME LOADING THE COUNTS FOR IT
+// FIX LOADING PAGE AN IN THE SAME TIME LOADING THE COUNTS FOR IT
 //ADD THIS PRO PLAN TO THE STATE
 
 const FreeCounter = async ({
   featureType,
-  isProPlan,
+  isProPlan = false,
 }: {
   featureType: string;
-  isProPlan: false;
+  isProPlan: boolean;
 }) => {
   const dispatch = UseStoreDispatcher();
   const apiCountData = useSelector(apiLimitCountSelector);

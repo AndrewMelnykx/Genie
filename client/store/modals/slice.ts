@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ModalsInitialState } from "./types";
-import { fetchStripe } from "./actions";
+import { fetchStripe, fetchSubscription } from "./actions";
 
 const initialState: ModalsInitialState = {
   isProModalVisible: false,
   stripePaymentData: "",
+  subscriptionData: false,
 };
 
 const modalsSlice = createSlice({
@@ -15,10 +16,14 @@ const modalsSlice = createSlice({
       state.isProModalVisible = action.payload;
     },
   },
-  extraReducers(builder) {
-    builder.addCase(fetchStripe.fulfilled, (state, action) => {
-      state.stripePaymentData = action.payload;
-    });
+  extraReducers: builder => {
+    builder
+      .addCase(fetchStripe.fulfilled, (state, action) => {
+        state.stripePaymentData = action.payload;
+      })
+      .addCase(fetchSubscription.fulfilled, (state, action) => {
+        state.subscriptionData = action.payload;
+      });
   },
 });
 export const { handleProModalVisibility } = modalsSlice.actions;

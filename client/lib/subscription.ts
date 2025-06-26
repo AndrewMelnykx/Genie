@@ -1,10 +1,10 @@
-import { auth } from "@clerk/nextjs/server";
+// import { auth } from "@clerk/nextjs/server";
 
 import prismadb from "./prisma.db";
 import { DAY_IN_MS } from "@/helpers/constants/form";
 
-const checkSubscription = async () => {
-  const { userId } = auth();
+const checkSubscription = async (userId: string) => {
+  // const { userId } = auth();
 
   if (!userId) {
     return false;

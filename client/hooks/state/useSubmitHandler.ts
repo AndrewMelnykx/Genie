@@ -7,7 +7,7 @@ import { SubmitHandlerProps } from "@/store/messages-list/types";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { useProModal } from "@/hooks/modals/useProModal";
-import { statues } from "@/helpers/constants/api";
+import { statuses } from "@/helpers/constants/api";
 
 const useSubmitHandler = (props: SubmitHandlerProps) => {
   const dispatch = UseStoreDispatcher();
@@ -18,7 +18,7 @@ const useSubmitHandler = (props: SubmitHandlerProps) => {
     try {
       await handleDispatchByModes(props, values.prompt, dispatch);
     } catch (error: unknown) {
-      if ((error as RejectedValue)?.statusCode === statues.forbidden) {
+      if ((error as RejectedValue)?.statusCode === statuses.forbidden) {
         proModal.onOpen();
       }
     } finally {

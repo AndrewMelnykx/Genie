@@ -1,11 +1,14 @@
+"use client";
+
 import Heading from "@/components/heading";
 import { SubscriptionButton } from "@/components/subscription-button";
-import { checkSubscription } from "@/lib/subscription";
+import { subscriptionValiditySelector } from "@/store/modals/selectors";
 
 import { Settings } from "lucide-react";
+import { useSelector } from "react-redux";
 
-const SettingsPage = async () => {
-  const isProPlan = await checkSubscription();
+const SettingsPage = () => {
+  const isProPlan = useSelector(subscriptionValiditySelector);
 
   return (
     <div>
