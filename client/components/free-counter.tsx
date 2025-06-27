@@ -11,21 +11,16 @@ import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
 import { useProModal } from "@/hooks/modals/useProModal";
-import { checkSubscription } from "@/lib/subscription";
+import { subscriptionValiditySelector } from "@/store/modals/selectors";
 
 // FIX LOADING PAGE AN IN THE SAME TIME LOADING THE COUNTS FOR IT
 //ADD THIS PRO PLAN TO THE STATE
 
-const FreeCounter = async ({
-  featureType,
-  isProPlan = false,
-}: {
-  featureType: string;
-  isProPlan: boolean;
-}) => {
+const FreeCounter = ({ featureType }: { featureType: string }) => {
   const dispatch = UseStoreDispatcher();
   const apiCountData = useSelector(apiLimitCountSelector);
   const proModal = useProModal();
+  const isProPlan = useSelector(subscriptionValiditySelector);
   if (isProPlan) {
     return null;
   }
@@ -40,7 +35,7 @@ const FreeCounter = async ({
     (apiCountData / maxCountByFeatureProp) * 100 || STABLE_FEATURE_LIMIT_NUMBER;
 
   return (
-    <div px-3 style={{ width: "90%", alignSelf: "center" }}>
+    <div className="px-3" style={{ width: "90%", alignSelf: "center" }}>
       <Card className="bg-white/10 border-0">
         <CardContent className="py-4">
           <div className="text-center text-sm text-white mb-4 space-y-2 ">

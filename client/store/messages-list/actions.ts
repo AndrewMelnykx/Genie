@@ -41,30 +41,31 @@ const fetchCodeMessagesList = createAsyncThunk<MessageType[], MessageType[], App
   },
 );
 
-const fetchImage = createAsyncThunk<MessageType[], { prompt: string; messages: MessageType[] }>(
-  FETCH_IMAGE,
-  async ({ prompt, messages }, { rejectWithValue }) => {
-    try {
-      const userMessage: MessageType = {
-        role: "user",
-        content: prompt,
-      };
+const fetchImage = createAsyncThunk<
+  MessageType[],
+  { prompt: string; messages: MessageType[] },
+  AppAsyncThunkConfig
+>(FETCH_IMAGE, async ({ prompt, messages }, { rejectWithValue }) => {
+  try {
+    const userMessage: MessageType = {
+      role: "user",
+      content: prompt,
+    };
 
-      const response = await axios.post(IMAGE_API_LINK, { prompt });
+    const response = await axios.post(IMAGE_API_LINK, { prompt });
 
-      const imageMessage: MessageType = {
-        role: "system",
-        content: response.data.content || "Here is your image",
-        image_data: response.data.image_data,
-        mime_type: response.data.mime_type || "image/png",
-      };
+    const imageMessage: MessageType = {
+      role: "system",
+      content: response.data.content || "Here is your image",
+      image_data: response.data.image_data,
+      mime_type: response.data.mime_type || "image/png",
+    };
 
-      return [...messages, userMessage, imageMessage];
-    } catch (err) {
-      return rejectWithValue(handleAxiosError(err));
-    }
-  },
-);
+    return [...messages, userMessage, imageMessage];
+  } catch (err) {
+    return rejectWithValue(handleAxiosError(err));
+  }
+});
 const fetchMusic = createAsyncThunk<MusicFile[], MusicGenerationRequest, AppAsyncThunkConfig>(
   FETCH_MUSIC,
   async (musicData, { rejectWithValue }) => {

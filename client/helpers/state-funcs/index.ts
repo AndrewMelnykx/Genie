@@ -17,7 +17,7 @@ const handleDispatchByModes = async (
       break;
     }
     case "image": {
-      await dispatch(props.dispatchAction({ prompt, messages: props.messagesData })).unwrap();
+      await dispatch(props.dispatchAction({ prompt, messages: props.messagesData }));
       break;
     }
     case "music": {

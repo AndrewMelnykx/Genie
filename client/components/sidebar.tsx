@@ -14,18 +14,13 @@ import { Cedarville, UncialAntiqua } from "helpers/fonts";
 import { usePathname } from "next/navigation";
 import { BASIC_LINK_ENDING } from "helpers/constants/api";
 import { getFeatureTypeFromUrl } from "@/helpers/validating-funcs";
-import { checkSubscription } from "@/lib/subscription";
 import { UseStoreDispatcher } from "../store";
 import { fetchSubscription } from "@/store/modals/actions";
-import { useSelector } from "react-redux";
-import { subscriptionValiditySelector } from "@/store/modals/selectors";
 import { useEffect } from "react";
 
 const Sidebar = () => {
   const pathname = usePathname();
   const dispatch = UseStoreDispatcher();
-
-  const isProSubscription = useSelector(subscriptionValiditySelector);
 
   useEffect(() => {
     dispatch(fetchSubscription());
@@ -74,7 +69,7 @@ const Sidebar = () => {
           )}
         </div>
       </div>
-      <FreeCounter featureType={featureType} isProPlan={isProSubscription} />
+      <FreeCounter featureType={featureType} />
     </div>
   );
 };

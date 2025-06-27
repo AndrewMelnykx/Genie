@@ -11,7 +11,7 @@ export async function GET() {
     if (!userId || !user) {
       return new NextResponse("Unauthorized", { status: statuses.unauthorized });
     }
-    const subscriptionValidationData = checkSubscription(userId);
+    const subscriptionValidationData = await checkSubscription(userId);
     return NextResponse.json({ subscriptionValidationData });
   } catch (err) {
     console.error("[SUBSCRIPTION_ERROR]", err);

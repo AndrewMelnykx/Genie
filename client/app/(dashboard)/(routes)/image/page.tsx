@@ -18,8 +18,6 @@ import { useCustomForm } from "@/hooks/forms/useCustomForm";
 
 import CustomImage from "@/components/custom-image";
 
-//FIX CONFIG IN DISPATCHING
-
 const ImagePage = () => {
   const form = useCustomForm();
   const imagesData = useSelector(imagesDataSelector);
