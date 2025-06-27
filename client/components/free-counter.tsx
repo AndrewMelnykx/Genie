@@ -31,7 +31,6 @@ const FreeCounter = ({ featureType }: { featureType: string }) => {
   }, [featureType, dispatch]);
   useEffect(() => {
     dispatch(fetchSubscription());
-    console.log("subscription is done");
   }, []);
 
   const maxCountByFeatureProp =

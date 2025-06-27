@@ -4,7 +4,7 @@ import {
   FETCH_SUBSCRIPTION,
   API_SUBSCRIPTION,
 } from "@/helpers/constants/api";
-import { AppAsyncThunkConfig, RejectedValue } from "@/helpers/types";
+import { AppAsyncThunkConfig } from "@/helpers/types";
 import { handleAxiosError } from "@/helpers/validating-funcs/error";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";

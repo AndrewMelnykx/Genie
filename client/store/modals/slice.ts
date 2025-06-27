@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ModalsInitialState } from "./types";
 import { fetchStripe, fetchSubscription } from "./actions";
 
+//Check do you actually need to receive the error or not
 const initialState: ModalsInitialState = {
   isProModalVisible: false,
   stripePaymentData: "",
@@ -26,7 +27,7 @@ const modalsSlice = createSlice({
         state.subscriptionData = action.payload;
       })
       .addCase(fetchSubscription.rejected, (state, action) => {
-        state.error = action.payload || "Subscription data fetching error occur";
+        state.error = action.payload?.error;
       });
   },
 });
