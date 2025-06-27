@@ -6,6 +6,7 @@ const initialState: ModalsInitialState = {
   isProModalVisible: false,
   stripePaymentData: "",
   subscriptionData: false,
+  error: "",
 };
 
 const modalsSlice = createSlice({
@@ -23,6 +24,9 @@ const modalsSlice = createSlice({
       })
       .addCase(fetchSubscription.fulfilled, (state, action) => {
         state.subscriptionData = action.payload;
+      })
+      .addCase(fetchSubscription.rejected, (state, action) => {
+        state.error = action.payload || "Subscription data fetching error occur";
       });
   },
 });

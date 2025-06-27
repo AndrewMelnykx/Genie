@@ -14,17 +14,9 @@ import { Cedarville, UncialAntiqua } from "helpers/fonts";
 import { usePathname } from "next/navigation";
 import { BASIC_LINK_ENDING } from "helpers/constants/api";
 import { getFeatureTypeFromUrl } from "@/helpers/validating-funcs";
-import { UseStoreDispatcher } from "../store";
-import { fetchSubscription } from "@/store/modals/actions";
-import { useEffect } from "react";
 
 const Sidebar = () => {
   const pathname = usePathname();
-  const dispatch = UseStoreDispatcher();
-
-  useEffect(() => {
-    dispatch(fetchSubscription());
-  }, []);
 
   const featureType = getFeatureTypeFromUrl(pathname) ?? BASIC_LINK_ENDING;
   return (

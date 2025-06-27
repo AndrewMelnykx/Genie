@@ -12,7 +12,7 @@ export async function GET() {
       return new NextResponse("Unauthorized", { status: statuses.unauthorized });
     }
     const subscriptionValidationData = await checkSubscription(userId);
-    return NextResponse.json({ subscriptionValidationData });
+    return NextResponse.json(subscriptionValidationData);
   } catch (err) {
     console.error("[SUBSCRIPTION_ERROR]", err);
     return new NextResponse("Internal error", { status: statuses.internalServerError });

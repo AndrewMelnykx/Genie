@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
 import { useProModal } from "@/hooks/modals/useProModal";
 import { subscriptionValiditySelector } from "@/store/modals/selectors";
+import { fetchSubscription } from "@/store/modals/actions";
 
 // FIX LOADING PAGE AN IN THE SAME TIME LOADING THE COUNTS FOR IT
 //ADD THIS PRO PLAN TO THE STATE
@@ -28,9 +29,13 @@ const FreeCounter = ({ featureType }: { featureType: string }) => {
   useEffect(() => {
     dispatch(fetchApiLimitCount(featureType));
   }, [featureType, dispatch]);
+  useEffect(() => {
+    dispatch(fetchSubscription());
+    console.log("subscription is done");
+  }, []);
 
   const maxCountByFeatureProp =
-    FEATURE_REQUEST_LIMITS_BY_NAME[featureType] || STABLE_FEATURE_LIMIT_NUMBER;
+    FEATURE_REQUEST_LIMITS_BY_NAME[featureType] ?? STABLE_FEATURE_LIMIT_NUMBER;
   const progressValueData =
     (apiCountData / maxCountByFeatureProp) * 100 || STABLE_FEATURE_LIMIT_NUMBER;
 

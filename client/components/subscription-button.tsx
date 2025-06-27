@@ -2,13 +2,11 @@
 
 import { Zap } from "lucide-react";
 import { Button } from "./ui/button";
+import { useSelector } from "react-redux";
+import { subscriptionValiditySelector } from "@/store/modals/selectors";
 
-interface SubscriptionButtonProps {
-  isProPlan: boolean;
-}
-
-const SubscriptionButton = ({ isProPlan = false }: SubscriptionButtonProps) => {
-  //ADD LOADING  HANDLING INTO REDUX
+const SubscriptionButton = () => {
+  const isProPlan = useSelector(subscriptionValiditySelector);
 
   return (
     <Button variant={isProPlan ? "default" : "premium"}>
