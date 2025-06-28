@@ -14,11 +14,25 @@ import { Cedarville, UncialAntiqua } from "helpers/fonts";
 import { usePathname } from "next/navigation";
 import { BASIC_LINK_ENDING } from "helpers/constants/api";
 import { getFeatureTypeFromUrl } from "@/helpers/validating-funcs";
+import { useEffect } from "react";
+import { fetchApiLimitCount } from "@/store/messages-list/actions";
+import { UseStoreDispatcher } from "../store";
+import { fetchSubscription } from "@/store/modals/actions";
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const dispatch = UseStoreDispatcher();
 
   const featureType = getFeatureTypeFromUrl(pathname) ?? BASIC_LINK_ENDING;
+
+  useEffect(() => {
+    const handleApiLimitCount = async () => {
+      await dispatch(fetchApiLimitCount(featureType));
+      await dispatch(fetchSubscription());
+    };
+    handleApiLimitCount();
+  }, [featureType, dispatch]);
+
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">

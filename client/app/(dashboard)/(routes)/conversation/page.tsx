@@ -19,39 +19,6 @@ import { useCustomForm } from "@/hooks/forms/useCustomForm";
 import { useSubmitHandler } from "@/hooks/state/useSubmitHandler";
 import { useApiLimitDispatcher } from "@/hooks/state/useApiLimitDispatcher";
 
-// CHECK THE LOGIC IN GPT WITH FETCHING DATA IN CUSTOM HOOK INSIDE HOOK
-
-// const useApiLimitDispatcher = ({
-//   submitHandlingPropFunction,
-//   featureName,
-//   fetchingApiLimitCount,
-// }: DispatchingApiLimit<MessageValueType>) => {
-//   const dispatch = UseStoreDispatcher();
-
-//   const wrappedHandler = async (values: MessageValueType) => {
-//     await dispatch(fetchingApiLimitCount(featureName));
-//     await submitHandlingPropFunction(values);
-//   };
-
-//   // Expose a standalone limit dispatcher too
-//   const dispatchLimitOnly = () => {
-//     dispatch(fetchingApiLimitCount(featureName));
-//   };
-
-//   return wrappedHandler; // or return both
-// };
-
-// const { wrappedHandler: onSubmitting, dispatchLimitOnly } = useApiLimitDispatcher({
-//   submitHandlingPropFunction: onMessageSending,
-//   featureName: FeatureType.CONVERSATION,
-//   fetchingApiLimitCount: fetchApiLimitCount,
-// });
-
-// useEffect(() => {
-//   dispatchLimitOnly(); // Fetch limits on page load
-//   dispatch(fetchSubscription()); // Also fetch subscription
-// }, [dispatchLimitOnly, dispatch]);
-
 const ConversationPage = () => {
   const form = useCustomForm();
   const messagesData = useSelector(conversationMessagesDataSelector);
