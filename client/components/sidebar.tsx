@@ -67,8 +67,8 @@ const Sidebar = () => {
                   )}
                 >
                   <div className="flex flex-items-center flex-1">
-                    <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
-                    {route.label}
+                    <route.icon className={cn("h-5 w-5 mr-3", route.iconColor)} strokeWidth={2} />
+                    <span> {route.label}</span>
                   </div>
                 </Link>
               ),

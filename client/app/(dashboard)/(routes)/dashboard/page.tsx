@@ -28,8 +28,8 @@ const DashboardPage = () => {
                 className="p-4 border-black/5 flex items-center justify-between hover:shadow-md transition cursor-pointer"
               >
                 <div className="flex items-center gap-x-4">
-                  <div className={cn("p-2 w-fit rounded-md ", route.bgColor ?? "bg-gray-300")}>
-                    {route.icon && <route.icon className={cn("w-8 h-8", route.color)} />}
+                  <div className={cn("p-2 w-fit rounded-md ", "bg-customGray")}>
+                    {route.icon && <route.icon className={cn("w-8 h-8", route.iconColor)} />}
                   </div>
                   <div className="font-semibold">{route.label}</div>
                 </div>
