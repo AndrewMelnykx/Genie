@@ -1,6 +1,6 @@
 import { RootState, StoreDispatcherTypes } from "@/store/index";
 import { imagesFormSchema } from "./constants/form";
-import { formSchema } from "@/components/custom-form";
+import { formSchema } from "@/components/custom/form";
 import { AsyncThunk } from "@reduxjs/toolkit";
 import { z } from "zod";
 

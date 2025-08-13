@@ -19,6 +19,8 @@ import { fetchApiLimitCount } from "@/store/messages-list/actions";
 import { UseStoreDispatcher } from "../store";
 import { fetchSubscription } from "@/store/modals/actions";
 
+//Fix color for dashbord nad for settigns icon
+
 const Sidebar = () => {
   const pathname = usePathname();
   const dispatch = UseStoreDispatcher();
@@ -62,7 +64,7 @@ const Sidebar = () => {
                   href={route.href}
                   key={route.href}
                   className={cn(
-                    "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition ",
+                    "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white text-bl hover:bg-white/10 rounded-lg transition ",
                     pathname === route.href ? "text-white bg-white/10" : "text-zinc-400",
                   )}
                 >

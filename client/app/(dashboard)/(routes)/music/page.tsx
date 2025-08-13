@@ -5,7 +5,7 @@ import "react-h5-audio-player/lib/styles.css";
 import AudioPlayer from "react-h5-audio-player";
 
 import Heading from "@/components/heading";
-import CustomForm from "@/components/custom-form";
+import CustomForm from "@/components/custom/form";
 import EmptyImage from "@/images/empty-music.png";
 
 import { Empty } from "@/components/empty";

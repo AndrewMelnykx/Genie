@@ -1,9 +1,11 @@
-import { MessageType } from "@/store/types";
 import Image from "next/image";
+
 import clsx from "clsx";
-import { Card, CardFooter } from "./ui/card";
-import { Button } from "./ui/button";
 import { Download } from "lucide-react";
+import { MessageType } from "@/store/messages-list/types";
+
+import { Card, CardFooter } from "../ui/card";
+import { Button } from "../ui/button";
 
 const CustomImage = ({ imagesData }: { imagesData: MessageType[] }) => {
   return (

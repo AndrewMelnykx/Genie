@@ -1,8 +1,9 @@
 "use client";
 
+import { useSelector } from "react-redux";
 import { Zap } from "lucide-react";
 import { Button } from "./ui/button";
-import { useSelector } from "react-redux";
+
 import { subscriptionValiditySelector } from "@/store/modals/selectors";
 
 const SubscriptionButton = () => {

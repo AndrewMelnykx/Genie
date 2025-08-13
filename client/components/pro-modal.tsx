@@ -8,7 +8,6 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
-
 import { useProModal } from "@/hooks/modals/useProModal";
 import { Badge } from "@/components/ui/badge";
 import { routes } from "@/helpers/constants/route";
@@ -48,8 +47,8 @@ const ProModal = () => {
                   className="p-3 border-black/5 flex items-center justify justify-between"
                 >
                   <div className="flex items-center gap-x-4 ">
-                    <div className={cn("p-2 w-fit rounded-lg", route?.bgColor)}>
-                      <route.icon className={cn("w-6 h-6", route?.color)} />
+                    <div className={cn("p-2 w-fit rounded-lg", route?.iconColor)}>
+                      <route.icon className={cn("w-6 h-6", route?.iconColor)} />
                     </div>
                     <div className="font-semibold text-sm">{route.label}</div>
                   </div>

@@ -3,7 +3,7 @@
 import { ImageIcon } from "lucide-react";
 
 import Heading from "@/components/heading";
-import CustomForm from "@/components/custom-form";
+import CustomForm from "@/components/custom/form";
 import EmptyImage from "@/images/empty-pic.png";
 
 import { Empty } from "@/components/empty";
@@ -16,7 +16,7 @@ import { fetchImage } from "@/store/messages-list/actions";
 import { useSubmitHandler } from "@/hooks/state/useSubmitHandler";
 import { useCustomForm } from "@/hooks/forms/useCustomForm";
 
-import CustomImage from "@/components/custom-image";
+import CustomImage from "@/components/custom/image";
 
 const ImagePage = () => {
   const form = useCustomForm();

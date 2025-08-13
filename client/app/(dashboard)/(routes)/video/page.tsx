@@ -5,7 +5,7 @@ import { Video } from "lucide-react";
 import "react-h5-audio-player/lib/styles.css";
 
 import Heading from "@/components/heading";
-import CustomForm from "@/components/custom-form";
+import CustomForm from "@/components/custom/form";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/laoder";
 import EmptyImage from "@/images/empty-video2.png";

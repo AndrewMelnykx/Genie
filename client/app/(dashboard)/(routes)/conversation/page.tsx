@@ -1,15 +1,14 @@
 "use client";
 
 import { MessageSquare } from "lucide-react";
+import { useSelector } from "react-redux";
 
 import Heading from "@/components/heading";
-import CustomForm from "@/components/custom-form";
+import CustomForm from "@/components/custom/form";
 import EmptyImage from "@/images/empty-conversation.png";
 
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/laoder";
-
-import { useSelector } from "react-redux";
 
 import { conversationMessagesDataSelector } from "@/store/messages-list/selectors";
 import { ConversationMessages } from "@/components/messages";
