@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+
 import { ClerkProvider } from "@clerk/nextjs";
 import { StoreProvider } from "@/store/provider";
-import { ModalProvider } from "@/components/modal-provider";
+import { ModalProvider } from "@/components/modals/provider";
 
-// Change fonts routes to aliases
+import "./globals.css";
 
-const geistSans = localFont({
-  src: "../assets/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../assets/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+const papyrusSans = localFont({
+  src: "../assets/fonts/papyrus/Papyrus_0.otf",
+  variable: "--font-papyrus",
   weight: "100 900",
 });
 
@@ -32,7 +27,7 @@ export default function RootLayout({
     <ClerkProvider>
       <StoreProvider>
         <html lang="en">
-          <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <body className={` ${papyrusSans.variable} antialiased`}>
             <ModalProvider />
             {children}
           </body>

@@ -1,6 +1,7 @@
 "use client";
 
 import { ImageIcon } from "lucide-react";
+import { useSelector } from "react-redux";
 
 import Heading from "@/components/heading";
 import CustomForm from "@/components/custom/form";
@@ -8,8 +9,6 @@ import EmptyImage from "@/images/empty-pic.png";
 
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/laoder";
-
-import { useSelector } from "react-redux";
 
 import { imagesDataSelector } from "@/store/messages-list/selectors";
 import { fetchImage } from "@/store/messages-list/actions";
@@ -49,7 +48,7 @@ const ImagePage = () => {
               <Loader />
             </div>
           )}
-          {ifMessagesEmpty && <Empty label="No images generated " img={EmptyImage} />}
+          <Empty label="No images generated " img={EmptyImage} ifIsEmpty={ifMessagesEmpty} />
           <CustomImage imagesData={imagesData} />
         </div>
       </div>

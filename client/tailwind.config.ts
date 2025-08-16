@@ -7,7 +7,19 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "text-blue-500",
+    "text-violet-500",
+    "text-pink-700",
+    "text-yellow-600",
+    "text-orange-500",
+    "text-green-700",
+    "text-gray-800",
+  ],
   theme: {
+    fontFamily: {
+      papyrus: ["var(--font-papyrus)"],
+    },
     extend: {
       colors: {
         customYellow: "rgb(255, 234, 0)",

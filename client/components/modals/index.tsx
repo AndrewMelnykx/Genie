@@ -14,8 +14,8 @@ import { routes } from "@/helpers/constants/route";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Check, Zap } from "lucide-react";
-import { Button } from "./ui/button";
-import { UseStoreDispatcher } from "../store";
+import { Button } from "../ui/button";
+import { UseStoreDispatcher } from "../../store";
 import { fetchStripe } from "@/store/modals/actions";
 
 const ProModal = () => {

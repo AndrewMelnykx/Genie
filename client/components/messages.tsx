@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import UserAvatar from "./user-avatar";
-import BotAvatar from "./bot-avatar";
+import UserAvatar from "./avatars/user";
+import BotAvatar from "./avatars/bot";
 import { MessageType } from "@/store/messages-list/types";
 
 export const ConversationMessages = ({ messages }: { messages: MessageType[] }) => {

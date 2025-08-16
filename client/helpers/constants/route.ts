@@ -12,7 +12,7 @@ const routes = [
   {
     label: "Dashboard",
     icon: LayoutDashboard,
-    iconColor: "text-blue-400",
+    iconColor: "text-blue-500",
     href: "/dashboard",
   },
   {

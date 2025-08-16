@@ -61,7 +61,7 @@ const ConversationPage = () => {
               <Loader />
             </div>
           )}
-          {ifMessagesEmpty && <Empty label="The`re no messages yet" img={EmptyImage} />}
+          <Empty label="The`re no messages yet" img={EmptyImage} ifIsEmpty={ifMessagesEmpty} />
           <ConversationMessages messages={messagesData} />
         </div>
       </div>

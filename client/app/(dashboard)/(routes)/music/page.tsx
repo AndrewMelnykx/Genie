@@ -59,8 +59,7 @@ const MusicPage = () => {
               <Loader />
             </div>
           )}
-          {ifMessagesEmpty && <Empty label="No music generated" img={EmptyImage} />}
-
+          <Empty label="No images generated " img={EmptyImage} ifIsEmpty={ifMessagesEmpty} />
           <div className="space-y-4 mt-4">
             {musicData.map((track: MusicFile) => (
               <div key={track.file_url} className="p-4 border rounded-lg bg-white shadow space-y-2">

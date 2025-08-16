@@ -13,9 +13,11 @@ const DashboardPage = () => {
   return (
     <div>
       <div className="mb-8 space-y-4">
-        <h2 className="text-2xl  md:text-4xl font-bold text-center">Enjoy the convenience of AI</h2>
-        <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
-          Chat with Djinnie - Make a wish !
+        <h2 className="text-2xl  md:text-4xl font-bold text-center text-black font-papyrus">
+          Enjoy the convenience of AI
+        </h2>
+        <p className="text-muted-foreground font-light text-sm md:text-lg text-center mt-[-1] font-papyrus">
+          Chat with Genie - make a wish !
         </p>
       </div>
       <div className="px-4 md:20-px lg:px-32 space-y-4">
@@ -29,7 +31,7 @@ const DashboardPage = () => {
               >
                 <div className="flex items-center gap-x-4">
                   <div className={cn("p-2 w-fit rounded-md ", "bg-customGray")}>
-                    {route.icon && <route.icon className={cn("w-8 h-8", route.iconColor)} />}
+                    {route.icon && <route.icon className={cn(`w-8 h-8 ${route.iconColor}`)} />}
                   </div>
                   <div className="font-semibold">{route.label}</div>
                 </div>

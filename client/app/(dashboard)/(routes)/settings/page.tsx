@@ -4,8 +4,11 @@ import { Settings } from "lucide-react";
 import { useSelector } from "react-redux";
 
 import Heading from "@/components/heading";
-import { SubscriptionButton } from "@/components/subscription-button";
+import { SubscriptionButton } from "@/components/custom/subscription-button";
 import { subscriptionValiditySelector } from "@/store/modals/selectors";
+import { Empty } from "@/components/empty";
+
+import SettingsImage from "@/images/settings.png";
 
 const SettingsPage = () => {
   const isProPlan = useSelector(subscriptionValiditySelector);
@@ -26,6 +29,7 @@ const SettingsPage = () => {
         </div>
         <SubscriptionButton />
       </div>
+      <Empty img={SettingsImage} label="" />
     </div>
   );
 };

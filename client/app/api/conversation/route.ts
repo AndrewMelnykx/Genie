@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     await incrementApiLimit(FeatureType.CONVERSATION);
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const history = [
       ...messages.map(message => ({
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
     const result = await chat.sendMessage(lastUserMessage);
 
     return NextResponse.json({
-      role: "system",
+      role: "model",
       content: result.response.text(),
     });
   } catch (error) {

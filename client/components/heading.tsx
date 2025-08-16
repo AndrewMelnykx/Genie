@@ -21,7 +21,7 @@ const Heading = ({ title, description, icon: Icon, iconColor, bgColor, color }: 
           {" "}
           {title}
         </h2>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        <p className="text-sm text-muted-foreground font-papyrus">{description}</p>
       </div>
     </div>
   );

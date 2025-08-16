@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+
 import Image from "next/image";
 import Link from "next/link";
 import LogoImage from "@/images/lamp.png";
@@ -8,18 +11,11 @@ import { cn } from "@/lib/utils";
 import { FreeCounter } from "@/components/free-counter";
 import { routes } from "helpers/constants/route";
 
-import { montserrat } from "helpers/constants/style";
-import { Cedarville, UncialAntiqua } from "helpers/fonts";
-
-import { usePathname } from "next/navigation";
 import { BASIC_LINK_ENDING } from "helpers/constants/api";
 import { getFeatureTypeFromUrl } from "@/helpers/validating-funcs";
-import { useEffect } from "react";
 import { fetchApiLimitCount } from "@/store/messages-list/actions";
-import { UseStoreDispatcher } from "../store";
+import { UseStoreDispatcher } from "@/store/index";
 import { fetchSubscription } from "@/store/modals/actions";
-
-//Fix color for dashbord nad for settigns icon
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -39,21 +35,17 @@ const Sidebar = () => {
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">
         <Link href="/dashboard" className="flex items-center pl-3 mb-14">
-          <div className="relative h-16 w-16 mr-4 border-r-3 rounded-full overflow-hidden flex items-center justify-center">
+          <div className="relative h-16 w-16 mr-4 border-r-3 rounded-full overflow-hidden flex items-center justify-center mt-[-7%]">
             <Image fill alt="logo" src={LogoImage} className="object-cover " />
           </div>
 
           <h1
             className={cn(
-              "text-[2.5rem] font-bold border-b-2 border-purple-700 pb-2",
-              montserrat.className,
+              "text-[2.5rem] font-bold border-b-2 border-purple-700 pb-2 font-papyrus",
+              "transition-all duration-100 hover:border-b-0 hover:pb-[calc(0.5rem+2px)]",
             )}
           >
-            <span className={UncialAntiqua.className}>
-              Ge
-              <span className={`${Cedarville.className} text-[3rem]`}>n</span>i
-              <span className={`${UncialAntiqua.className} text-[2.2rem]`}>e</span>
-            </span>
+            Genie
           </h1>
         </Link>
         <div className="space-y-1">
