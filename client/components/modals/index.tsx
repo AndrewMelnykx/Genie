@@ -1,5 +1,7 @@
 "use client";
 
+import { Check, Zap } from "lucide-react";
+
 import {
   Dialog,
   DialogContent,
@@ -8,15 +10,15 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { useProModal } from "@/hooks/modals/useProModal";
-import { Badge } from "@/components/ui/badge";
-import { routes } from "@/helpers/constants/route";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
-import { Check, Zap } from "lucide-react";
-import { Button } from "../ui/button";
-import { UseStoreDispatcher } from "../../store";
+import { Badge } from "@/components/ui/badge";
+
+import { useProModal } from "@/hooks/modals/useProModal";
+import { routes } from "@/helpers/constants/route";
+import { UseStoreDispatcher } from "@/store/index";
 import { fetchStripe } from "@/store/modals/actions";
+import { cn } from "@/lib/utils";
 
 const ProModal = () => {
   // If it will be needed , then add useProModal into ,mobile side bar
@@ -26,7 +28,6 @@ const ProModal = () => {
   const handleSubscription = () => {
     dispatch(fetchStripe());
   };
-  //POSSIBLY SOLUTION IS CHANGE bg to bgColor IN ROUTE NAMING
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent>

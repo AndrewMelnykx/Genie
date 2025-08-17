@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
 import { MessageType, MusicFile, MusicGenerationRequest, VideoFileFullResponse } from "./types";
 import {
   API_CONVERSATION,
@@ -17,6 +18,8 @@ import {
 } from "@/constants/api";
 import { AppAsyncThunkConfig } from "@/helpers/types";
 import { handleAxiosError } from "@/helpers/validating-funcs/error";
+import { popToast } from "@/helpers/validating-funcs/toast";
+
 const fetchMessagesList = createAsyncThunk<MessageType[], MessageType[], AppAsyncThunkConfig>(
   FETCH_CONVERSATION_MESSAGES,
   async (messages, { rejectWithValue }) => {
@@ -24,6 +27,7 @@ const fetchMessagesList = createAsyncThunk<MessageType[], MessageType[], AppAsyn
       const response = await axios.post(API_CONVERSATION, { messages });
       return [...messages, response.data];
     } catch (err) {
+      popToast("Text");
       return rejectWithValue(handleAxiosError(err));
     }
   },
@@ -36,6 +40,7 @@ const fetchCodeMessagesList = createAsyncThunk<MessageType[], MessageType[], App
       const response = await axios.post(API_CODE, { messages });
       return [...messages, response.data];
     } catch (err) {
+      popToast("Code");
       return rejectWithValue(handleAxiosError(err));
     }
   },
@@ -63,6 +68,7 @@ const fetchImage = createAsyncThunk<
 
     return [...messages, userMessage, imageMessage];
   } catch (err) {
+    popToast("Image");
     return rejectWithValue(handleAxiosError(err));
   }
 });
@@ -73,6 +79,7 @@ const fetchMusic = createAsyncThunk<MusicFile[], MusicGenerationRequest, AppAsyn
       const response = await axios.post(API_MUSIC, musicData);
       return response.data;
     } catch (err) {
+      popToast("Music");
       return rejectWithValue(handleAxiosError(err));
     }
   },

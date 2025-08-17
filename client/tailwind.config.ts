@@ -25,6 +25,7 @@ const config: Config = {
         customYellow: "rgb(255, 234, 0)",
         customGray: "rgb(250, 249, 246)",
         background: "hsl(var(--background))",
+        landingBgColor: "#111827",
         foreground: "hsl(var(--foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",

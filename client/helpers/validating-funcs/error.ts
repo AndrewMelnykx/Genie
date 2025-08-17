@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { RejectedValue } from "../types";
-import { statuses } from "../constants/api";
+import { statuses } from "@/constants/api";
 
 const handleAxiosError = (err: unknown): RejectedValue => {
   if (axios.isAxiosError(err)) {
