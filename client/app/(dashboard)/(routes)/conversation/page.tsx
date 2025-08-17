@@ -8,7 +8,7 @@ import CustomForm from "@/components/custom/form";
 import EmptyImage from "@/images/empty-conversation.png";
 
 import { Empty } from "@/components/empty";
-import { Loader } from "@/components/laoder";
+import { Loader } from "@/components/loader";
 
 import { conversationMessagesDataSelector } from "@/store/messages-list/selectors";
 import { ConversationMessages } from "@/components/messages";

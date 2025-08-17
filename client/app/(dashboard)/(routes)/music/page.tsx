@@ -9,7 +9,7 @@ import CustomForm from "@/components/custom/form";
 import EmptyImage from "@/images/empty-music.png";
 
 import { Empty } from "@/components/empty";
-import { Loader } from "@/components/laoder";
+import { Loader } from "@/components/loader";
 
 import { useSelector } from "react-redux";
 

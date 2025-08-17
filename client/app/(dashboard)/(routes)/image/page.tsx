@@ -8,7 +8,7 @@ import CustomForm from "@/components/custom/form";
 import EmptyImage from "@/images/empty-pic.png";
 
 import { Empty } from "@/components/empty";
-import { Loader } from "@/components/laoder";
+import { Loader } from "@/components/loader";
 
 import { imagesDataSelector } from "@/store/messages-list/selectors";
 import { fetchImage } from "@/store/messages-list/actions";

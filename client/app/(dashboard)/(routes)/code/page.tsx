@@ -9,7 +9,7 @@ import EmptyImage from "@/images/empty-code.png";
 import ReactMarkdown from "react-markdown";
 
 import { Empty } from "@/components/empty";
-import { Loader } from "@/components/laoder";
+import { Loader } from "@/components/loader";
 
 import { codeMessagesDataSelector } from "@/store/messages-list/selectors";
 
