@@ -1,6 +1,5 @@
 import { UserButton } from "@clerk/nextjs";
-
-import MobileSidebar from "./sidebar/mobile";
+import MobileSidebar from "../sidebar/mobile";
 
 const Navbar = () => {
   return (
