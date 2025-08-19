@@ -66,14 +66,12 @@ const CodePage = () => {
           {ifMessagesEmpty && <Empty label="Code field empty for now ..." img={EmptyImage} />}
           <ReactMarkdown
             components={{
-              pre: ({ node, ...props }) => (
+              pre: ({ ...props }) => (
                 <div className="overflow-auto w-full m-2 bg-black/10 p-2 rounded-lg">
                   <pre {...props} />
                 </div>
               ),
-              code: ({ node, ...props }) => (
-                <code className="rounded-lg p-1 bg-black/10 " {...props} />
-              ),
+              code: ({ ...props }) => <code className="rounded-lg p-1 bg-black/10 " {...props} />,
             }}
           >
             {separatedMessages}
