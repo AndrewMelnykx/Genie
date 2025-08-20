@@ -1,8 +1,10 @@
-import { FeatureType, statuses } from "helpers/constants/api";
-import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
 import { auth } from "@clerk/nextjs/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
+
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
+
+import { FeatureType, statuses } from "helpers/constants/api";
 
 interface MessageItem {
   role: string;
