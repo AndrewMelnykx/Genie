@@ -5,7 +5,7 @@ import { FeatureType, MUSIC_API_LINK, statuses } from "helpers/constants/api";
 import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
 
 export async function POST(request: Request) {
-  const token = process.env.NEXT_PUBLIC_MUSICFY_API_KEY;
+  const token = process.env.MUSICFY_API_KEY;
   try {
     const { userId } = auth();
     const body = await request.json();

@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { messages }: { messages: MessageItem[] } = body;
 
-    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       return new NextResponse("GEMINI_API_KEY is not defined!", {
         status: statuses.internalServerError,
