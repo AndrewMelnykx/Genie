@@ -1,9 +1,10 @@
 "use client";
 
+import { useSelector } from "react-redux";
+
 import { UseStoreDispatcher } from "@/store/index";
 import { proModalVisibilitySelector } from "@/store/modals/selectors";
 import { handleProModalVisibility } from "@/store/modals/slice";
-import { useSelector } from "react-redux";
 
 const useProModal = () => {
   const dispatch = UseStoreDispatcher();
