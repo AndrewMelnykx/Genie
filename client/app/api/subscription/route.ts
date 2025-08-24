@@ -1,7 +1,8 @@
-import { statuses } from "@/helpers/constants/api";
+import { NextResponse } from "next/server";
+
 import { checkSubscription } from "@/lib/subscription";
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+import { statuses } from "utils/constants/api";
 
 export async function GET() {
   try {

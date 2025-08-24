@@ -2,10 +2,9 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 // import { writeFile } from "fs/promises";
 import Replicate from "replicate";
-import { FeatureType, statuses } from "helpers/constants/api";
-import { input } from "helpers/constants/style";
 
 import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
+import { FeatureType, input, statuses } from "utils/constants/api";
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_KEY,

@@ -5,7 +5,6 @@ import { MessageType, MusicFile, MusicGenerationRequest, VideoFileFullResponse }
 import {
   API_CONVERSATION,
   API_CODE,
-  IMAGE_API_LINK,
   FETCH_CONVERSATION_MESSAGES,
   FETCH_CODE_MESSAGES,
   FETCH_IMAGE,
@@ -19,6 +18,7 @@ import {
 import { AppAsyncThunkConfig } from "@/helpers/types";
 import { handleAxiosError } from "@/helpers/validating-funcs/error";
 import { popToast } from "@/helpers/validating-funcs/toast";
+import { IMAGE_API_LINK } from "utils/constants/api";
 
 const fetchMessagesList = createAsyncThunk<MessageType[], MessageType[], AppAsyncThunkConfig>(
   FETCH_CONVERSATION_MESSAGES,

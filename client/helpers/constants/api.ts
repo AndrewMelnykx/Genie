@@ -1,3 +1,5 @@
+import { FeatureType } from "utils/constants/api";
+
 const API_CONVERSATION = "/api/conversation";
 const API_CODE = "/api/code";
 const API_MUSIC = "/api/music";
@@ -15,17 +17,6 @@ const FETCH_LIMIT = "fetchLimit";
 const FETCH_STRIPE = "fetchStripe";
 const FETCH_SUBSCRIPTION = "fetchSubscription";
 
-const IMAGE_API_LINK = "http://localhost:8000/generate-image";
-const MUSIC_API_LINK = "https://api.musicfy.lol/v1/generate-music";
-const VIDEO_API_LINK = "http://localhost:5000/generate_video";
-
-const FeatureType = {
-  CONVERSATION: "conversation",
-  IMAGE: "image",
-  VIDEO: "video",
-  MUSIC: "music",
-  CODE: "code",
-};
 const BASIC_LINK_ENDING = FeatureType.CONVERSATION;
 
 const FEATURE_REQUEST_LIMITS_BY_NAME: Record<string, number> = {
@@ -43,14 +34,7 @@ const LAST_SEGMENT_TO_FEATURE_TYPE: Record<string, string> = {
   music: FeatureType.MUSIC,
   code: FeatureType.CODE,
 };
-const statuses = {
-  success: 200,
-  forbidden: 403,
-  notFound: 404,
-  internalServerError: 500,
-  unauthorized: 401,
-  badRequestError: 400,
-};
+
 const STABLE_FEATURE_LIMIT_NUMBER = 2;
 const ZERO_USERS_REQUEST = 0;
 const prerequisiteText =
@@ -59,14 +43,10 @@ const prerequisiteText =
 export {
   API_SUBSCRIPTION,
   FETCH_SUBSCRIPTION,
-  statuses,
   API_CONVERSATION,
   API_CODE,
   API_MUSIC,
   API_VIDEO,
-  IMAGE_API_LINK,
-  MUSIC_API_LINK,
-  VIDEO_API_LINK,
   FeatureType,
   FEATURE_REQUEST_LIMITS_BY_NAME,
   STABLE_FEATURE_LIMIT_NUMBER,

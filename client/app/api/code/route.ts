@@ -3,8 +3,7 @@ import { NextResponse } from "next/server";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
-
-import { FeatureType, statuses } from "helpers/constants/api";
+import { FeatureType, statuses } from "utils/constants/api";
 
 interface MessageItem {
   role: string;

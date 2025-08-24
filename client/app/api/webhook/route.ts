@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 import prismadb from "@/lib/prisma.db";
 import { stripe } from "@/lib/stripe";
-import { statuses } from "@/helpers/constants/api";
+import { statuses } from "utils/constants/api";
 
 export async function POST(req: Request) {
   const body = await req.text();

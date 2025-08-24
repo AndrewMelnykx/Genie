@@ -1,7 +1,7 @@
 import { getApiLimitCount } from "@/lib/api-limit";
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { statuses } from "@/helpers/constants/api";
+import { statuses } from "utils/constants/api";
 
 export async function GET(request: Request) {
   try {
