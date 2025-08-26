@@ -35,6 +35,7 @@ export async function POST(request: Request) {
     if (!freeTrial) {
       return NextResponse.json({ error: "Free trial expired" }, { status: statuses.forbidden });
     }
+
     await incrementApiLimit(FeatureType.CONVERSATION);
 
     const genAI = new GoogleGenerativeAI(apiKey);
