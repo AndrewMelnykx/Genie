@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getApiLimitCount } from "@/lib/api-limit";
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
