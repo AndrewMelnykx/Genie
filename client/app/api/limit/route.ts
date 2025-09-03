@@ -5,7 +5,7 @@ import { statuses } from "utils/constants/api";
 
 export async function GET(request: Request) {
   try {
-    const userId = auth();
+    const { userId } = auth();
     const { searchParams } = new URL(request.url);
     const feature = searchParams.get("feature");
 
