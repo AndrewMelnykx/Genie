@@ -20,10 +20,10 @@ const FETCH_SUBSCRIPTION = "fetchSubscription";
 const BASIC_LINK_ENDING = FeatureType.CONVERSATION;
 
 const FEATURE_REQUEST_LIMITS_BY_NAME: Record<string, number> = {
-  [FeatureType.CONVERSATION]: 7,
+  [FeatureType.CONVERSATION]: 5,
   [FeatureType.IMAGE]: 3,
-  [FeatureType.VIDEO]: 1,
-  [FeatureType.MUSIC]: 1,
+  [FeatureType.VIDEO]: 0,
+  [FeatureType.MUSIC]: 0,
   [FeatureType.CODE]: 5,
 };
 
@@ -38,8 +38,7 @@ const LAST_SEGMENT_TO_FEATURE_TYPE: Record<string, string> = {
 const STABLE_FEATURE_LIMIT_NUMBER = 2;
 const ZERO_USERS_REQUEST = 0;
 const prerequisiteText =
-  "Please only provide the code, and no additional explanations, and after code part explain what you wrote for a beginner in coding , do it relying on complexity of the request.Do a margin for one row after code part";
-
+  "Please generate a coding element max length of 130 symbols  , with a slight explanation, this text dont need to be printed but is very important";
 export {
   API_SUBSCRIPTION,
   FETCH_SUBSCRIPTION,
