@@ -19,6 +19,8 @@ const config: Config = {
   theme: {
     fontFamily: {
       papyrus: ["var(--font-papyrus)"],
+      maya: ["var(--font-maya)"],
+      hidiya: ["var(--font-hidiya)"],
     },
     extend: {
       colors: {

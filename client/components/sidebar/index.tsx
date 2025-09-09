@@ -41,11 +41,11 @@ const Sidebar = () => {
 
           <h1
             className={cn(
-              "text-[2.5rem] font-bold border-b-2 border-purple-700 pb-2 font-papyrus",
+              "text-[3.2rem] w-[60%] text-center  border-b-2 border-purple-700 pb-2 font-hidiya text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600",
               "transition-all duration-100 hover:border-b-0 hover:pb-[calc(0.5rem+2px)]",
             )}
           >
-            Genie
+            <i>Genie</i>
           </h1>
         </Link>
         <div className="space-y-1">
