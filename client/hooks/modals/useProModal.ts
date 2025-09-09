@@ -3,8 +3,8 @@
 import { useSelector } from "react-redux";
 
 import { UseStoreDispatcher } from "@/store/index";
-import { proModalVisibilitySelector } from "@/store/modals/selectors";
-import { handleProModalVisibility } from "@/store/modals/slice";
+import { proModalVisibilitySelector } from "@/store/ui/selectors";
+import { handleProModalVisibility } from "@/store/ui/slice";
 
 const useProModal = () => {
   const dispatch = UseStoreDispatcher();

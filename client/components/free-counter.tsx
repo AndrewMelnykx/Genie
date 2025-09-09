@@ -8,7 +8,7 @@ import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
 import { useProModal } from "@/hooks/modals/useProModal";
-import { subscriptionValiditySelector } from "@/store/modals/selectors";
+import { subscriptionValiditySelector } from "@/store/ui/selectors";
 
 const FreeCounter = ({ featureType }: { featureType: string }) => {
   const apiCountData = useSelector(apiLimitCountSelector);

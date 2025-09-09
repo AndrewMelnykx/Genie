@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 import Heading from "@/components/heading";
 import { SubscriptionButton } from "@/components/custom/subscription-button";
-import { subscriptionValiditySelector } from "@/store/modals/selectors";
+import { subscriptionValiditySelector } from "@/store/ui/selectors";
 import { Empty } from "@/components/empty";
 
 import SettingsImage from "@/images/settings.png";

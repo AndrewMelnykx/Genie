@@ -15,7 +15,8 @@ import { BASIC_LINK_ENDING } from "helpers/constants/api";
 import { getFeatureTypeFromUrl } from "@/helpers/validating-funcs";
 import { fetchApiLimitCount } from "@/store/messages-list/actions";
 import { UseStoreDispatcher } from "@/store/index";
-import { fetchSubscription } from "@/store/modals/actions";
+import { fetchSubscription } from "@/store/ui/actions";
+import { handleThemeToggling } from "@/store/ui/slice";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -30,6 +31,9 @@ const Sidebar = () => {
     };
     handleApiLimitCount();
   }, [featureType, dispatch]);
+  const handlClick = () => {
+    dispatch(handleThemeToggling("dark"));
+  };
 
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -46,6 +50,9 @@ const Sidebar = () => {
             )}
           >
             <i>Genie</i>
+            <button className="bg-white w-100 h-100" onClick={handlClick}>
+              123
+            </button>
           </h1>
         </Link>
         <div className="space-y-1">

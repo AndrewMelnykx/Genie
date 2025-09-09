@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import { StoreProvider } from "@/store/provider";
+import { StoreProvider } from "@/components/providers/store";
 import { ModalProvider } from "@/components/modals/provider";
-import { ToasterProvider } from "@/components/toaster-provider";
+import { ToasterProvider } from "@/components/providers/toaster";
 
 import { CrispProvider } from "@/components/crisp/provider";
 
 import "./globals.css";
+import { ThemeWrapper } from "@/components/providers/theme";
 
 const papyrusSans = localFont({
   src: "../assets/fonts/papyrus/Papyrus_0.otf",
@@ -43,9 +44,11 @@ export default function RootLayout({
           <body
             className={` ${papyrusSans.variable} ${mayaSans.variable} ${hidiyaSans.variable} antialiased`}
           >
-            <ModalProvider />
-            <ToasterProvider />
-            {children}
+            <ThemeWrapper>
+              <ModalProvider />
+              <ToasterProvider />
+              {children}
+            </ThemeWrapper>
           </body>
         </html>
       </StoreProvider>

@@ -17,7 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { useProModal } from "@/hooks/modals/useProModal";
 import { routes } from "@/helpers/constants/route";
 import { UseStoreDispatcher } from "@/store/index";
-import { fetchStripe } from "@/store/modals/actions";
+import { fetchStripe } from "@/store/ui/actions";
 import { cn } from "@/lib/utils";
 
 const ProModal = () => {

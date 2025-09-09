@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Zap } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { subscriptionValiditySelector } from "@/store/modals/selectors";
+import { subscriptionValiditySelector } from "@/store/ui/selectors";
 
 const SubscriptionButton = () => {
   const isProPlan = useSelector(subscriptionValiditySelector);

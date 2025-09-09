@@ -1,21 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ModalsInitialState } from "./types";
+
 import { fetchStripe, fetchSubscription } from "./actions";
+import { UIInitialState } from "./types";
 
 //Check do you actually need to receive the error or not
-const initialState: ModalsInitialState = {
+const initialState: UIInitialState = {
   isProModalVisible: false,
   stripePaymentData: "",
   subscriptionData: false,
+  theme: "light",
   error: "",
 };
 
-const modalsSlice = createSlice({
+const uiSlice = createSlice({
   name: "modals-state",
   initialState: initialState,
   reducers: {
     handleProModalVisibility: (state, action) => {
       state.isProModalVisible = action.payload;
+    },
+    handleThemeToggling: (state, action) => {
+      state.theme = action.payload;
     },
   },
   extraReducers: builder => {
@@ -31,6 +36,6 @@ const modalsSlice = createSlice({
       });
   },
 });
-export const { handleProModalVisibility } = modalsSlice.actions;
+export const { handleProModalVisibility, handleThemeToggling } = uiSlice.actions;
 
-export default modalsSlice;
+export default uiSlice;

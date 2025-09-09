@@ -1,18 +1,20 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { requestAIHandlingTypes } from "./types";
 import { useSelector } from "react-redux";
+
 import requestAISlice from "./messages-list/slice";
-import { ModalsInitialState } from "./modals/types";
-import modalsSlice from "./modals/slice";
+import uiSlice from "./ui/slice";
+
+import { requestAIHandlingTypes } from "./types";
+import { UIInitialState } from "./ui/types";
 
 export interface RootState {
   requestAIData: requestAIHandlingTypes;
-  modalsState: ModalsInitialState;
+  uiState: UIInitialState;
 }
 
 const RootReducer = combineReducers({
   requestAIData: requestAISlice.reducer,
-  modalsState: modalsSlice.reducer,
+  uiState: uiSlice.reducer,
 });
 
 const store = configureStore({ reducer: RootReducer });
