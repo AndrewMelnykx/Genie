@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 
-import prismadb from "./prisma.db";
 import { FEATURE_REQUEST_LIMITS_BY_NAME, STABLE_FEATURE_LIMIT_NUMBER } from "helpers/constants/api";
+import prismadb from "./db";
 
 const incrementApiLimit = async (feature: string): Promise<void> => {
   const { userId } = auth();
@@ -47,6 +47,8 @@ const checkApiLimit = async (feature: string) => {
   if (!userApiLimit || userApiLimit.count < maxFreeCount) {
     return true;
   } else {
+    console.log("WRONG USER ID!!!!");
+
     return false;
   }
 };

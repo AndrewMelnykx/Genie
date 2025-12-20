@@ -1,8 +1,9 @@
-import prismadb from "./prisma.db";
 import { DAY_IN_MS } from "@/helpers/constants/form";
+import prismadb from "./db";
 
 const checkSubscription = async (userId: string) => {
   if (!userId) {
+    console.log("WRONG USER ID!!!!");
     return false;
   }
 
@@ -24,7 +25,6 @@ const checkSubscription = async (userId: string) => {
     userSubscription.stripePriceId &&
     userSubscription.stripeCurrentPeriodEnd &&
     userSubscription.stripeCurrentPeriodEnd.getTime() + DAY_IN_MS > Date.now();
-
   return Boolean(isValidSubscription);
 };
 

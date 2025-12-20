@@ -39,7 +39,8 @@ const ConversationPage = () => {
   const ifMessagesEmpty = messagesData.length === 0 && !isLoading;
 
   return (
-    <div style={{ color: "black", fontSize: "20px" }}>
+    // <div style={{ color: "black", fontSize: "20px" }}>
+    <div className="text-black dark:text-white text-[20px]">
       <Heading
         title="Conversation"
         description="The newest conversation model from us"

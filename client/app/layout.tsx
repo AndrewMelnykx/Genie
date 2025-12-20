@@ -7,9 +7,9 @@ import { ModalProvider } from "@/components/modals/provider";
 import { ToasterProvider } from "@/components/providers/toaster";
 
 import { CrispProvider } from "@/components/crisp/provider";
+import { ThemeWrapper } from "@/components/providers/theme";
 
 import "./globals.css";
-import { ThemeWrapper } from "@/components/providers/theme";
 
 const papyrusSans = localFont({
   src: "../assets/fonts/papyrus/Papyrus_0.otf",
