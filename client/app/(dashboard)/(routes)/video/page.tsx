@@ -101,7 +101,7 @@ const VideoPage = () => {
           )}
 
           {!videoLinkFromRequest && !isLoading && (
-            <Empty label="No video generated" img={EmptyImage} />
+            <Empty label="No video generated" img={EmptyImage} ifIsEmpty={true} />
           )}
 
           {/* {videoLinkFromRequest && (

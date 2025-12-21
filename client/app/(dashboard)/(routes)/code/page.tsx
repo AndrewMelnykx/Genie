@@ -63,7 +63,13 @@ const CodePage = () => {
               <Loader />
             </div>
           )}
-          {ifMessagesEmpty && <Empty label="Code field empty for now ..." img={EmptyImage} />}
+          {ifMessagesEmpty && (
+            <Empty
+              label="Code field empty for now ..."
+              img={EmptyImage}
+              ifIsEmpty={ifMessagesEmpty}
+            />
+          )}
           <ReactMarkdown
             components={{
               pre: ({ ...props }) => (

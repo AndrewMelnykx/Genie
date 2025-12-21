@@ -37,7 +37,7 @@ const ConversationPage = () => {
 
   const isLoading = form.formState.isSubmitting;
   const ifMessagesEmpty = messagesData.length === 0 && !isLoading;
-
+  console.log("ConversationPage render", messagesData);
   return (
     // <div style={{ color: "black", fontSize: "20px" }}>
     <div className="text-black dark:text-white text-[20px]">
