@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
-import prismadb from "@/lib/prisma";
+import prismadb from "@/lib/db";
 import { statuses } from "utils/constants/api";
 
 const settingsUrl = absoluteUrl("/settings");

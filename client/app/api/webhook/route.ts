@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-import prismadb from "@/lib/prisma";
+import prismadb from "@/lib/db";
 import { stripe } from "@/lib/stripe";
 import { statuses } from "utils/constants/api";
 
