@@ -28,6 +28,7 @@ const CodePage = () => {
     messagesData: codeMessagesData,
     dispatchAction: fetchCodeMessagesList,
     prerequisiteFormText: prerequisiteText,
+    featureKey: FeatureType.CODE,
   });
   const onSubmitting = useApiLimitDispatcher({
     submitHandlingPropFunction: onMessageSending,

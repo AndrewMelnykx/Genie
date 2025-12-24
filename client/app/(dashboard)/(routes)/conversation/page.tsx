@@ -27,6 +27,7 @@ const ConversationPage = () => {
     messagesData: messagesData,
     dispatchAction: fetchMessagesList,
     prerequisiteFormText: "",
+    featureKey: FeatureType.CONVERSATION,
   });
 
   const onSubmitting = useApiLimitDispatcher({
@@ -37,9 +38,8 @@ const ConversationPage = () => {
 
   const isLoading = form.formState.isSubmitting;
   const ifMessagesEmpty = messagesData.length === 0 && !isLoading;
-  console.log("ConversationPage render", messagesData);
+
   return (
-    // <div style={{ color: "black", fontSize: "20px" }}>
     <div className="text-black dark:text-white text-[20px]">
       <Heading
         title="Conversation"
@@ -49,24 +49,19 @@ const ConversationPage = () => {
         bgColor="bg-violet-500/10"
       />
       <div className="px-4 lg:px-8">
-        <div>
-          <CustomForm
-            form={form}
-            onSubmit={onSubmitting}
-            placeholder="How do  I see in the dark?"
-          />
-        </div>
+        <CustomForm form={form} onSubmit={onSubmitting} placeholder="How do I see in the dark?" />
         <div className="space-y-4 mt-4">
           {isLoading && (
-            <div className=" p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
               <Loader />
             </div>
           )}
-          <Empty label="The`re no messages yet" img={EmptyImage} ifIsEmpty={ifMessagesEmpty} />
+          {/* <Empty label="There are no messages yet" img={EmptyImage} ifIsEmpty={ifMessagesEmpty} /> */}
           <ConversationMessages messages={messagesData} />
         </div>
       </div>
     </div>
   );
 };
+
 export default ConversationPage;

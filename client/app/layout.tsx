@@ -10,6 +10,7 @@ import { CrispProvider } from "@/components/crisp/provider";
 import { ThemeWrapper } from "@/components/providers/theme";
 
 import "./globals.css";
+import React from "react";
 
 const papyrusSans = localFont({
   src: "../assets/fonts/papyrus/Papyrus_0.otf",
@@ -31,27 +32,47 @@ export const metadata: Metadata = {
   description: "AI Platform",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode;
+// }>) {
+//   return (
+//     <ClerkProvider>
+//       <StoreProvider>
+//         <html lang="en">
+//           <CrispProvider />
+//           <body
+//             className={` ${papyrusSans.variable} ${mayaSans.variable} ${hidiyaSans.variable} antialiased`}
+//           >
+//             <ThemeWrapper>
+//               <ModalProvider />
+//               <ToasterProvider />
+//               {children}
+//             </ThemeWrapper>
+//           </body>
+//         </html>
+//       </StoreProvider>
+//     </ClerkProvider>
+//   );
+// }
+// app/layout.tsx
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
-      <StoreProvider>
-        <html lang="en">
-          <CrispProvider />
-          <body
-            className={` ${papyrusSans.variable} ${mayaSans.variable} ${hidiyaSans.variable} antialiased`}
-          >
+    <html lang="en">
+      <body className="antialiased">
+        <ClerkProvider>
+          <StoreProvider>
+            <CrispProvider />
             <ThemeWrapper>
               <ModalProvider />
               <ToasterProvider />
               {children}
             </ThemeWrapper>
-          </body>
-        </html>
-      </StoreProvider>
-    </ClerkProvider>
+          </StoreProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

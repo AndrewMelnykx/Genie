@@ -10,15 +10,18 @@ import { SubmitHandlerProps } from "@/store/messages-list/types";
 
 import { useProModal } from "@/hooks/modals/useProModal";
 import { statuses } from "utils/constants/api";
+import { useSelector } from "react-redux";
+import { endRequest, selectIsSubmitting, startRequest } from "@/store/features-request/slice";
 
-//Didn`t export any constants api at all
-
-const useSubmitHandler = (props: SubmitHandlerProps) => {
+const useSubmitHandler = (props: SubmitHandlerProps & { featureKey: string }) => {
   const dispatch = UseStoreDispatcher();
-  const router = useRouter();
   const proModal = useProModal();
+  const router = useRouter();
+  const isSubmitting = useSelector(selectIsSubmitting(props.featureKey));
 
   return async (values: z.infer<CustomFormHandler>) => {
+    if (isSubmitting) return;
+    dispatch(startRequest(props.featureKey));
     try {
       await handleDispatchByModes(props, values.prompt, dispatch);
     } catch (error: unknown) {
@@ -26,7 +29,8 @@ const useSubmitHandler = (props: SubmitHandlerProps) => {
         proModal.onOpen();
       }
     } finally {
-      router.refresh();
+      dispatch(endRequest(props.featureKey));
+      // router.refresh();
     }
   };
 };
