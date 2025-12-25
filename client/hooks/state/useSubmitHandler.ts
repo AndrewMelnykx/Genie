@@ -30,7 +30,7 @@ const useSubmitHandler = (props: SubmitHandlerProps & { featureKey: string }) =>
       }
     } finally {
       dispatch(endRequest(props.featureKey));
-      // router.refresh();
+      router.refresh();
     }
   };
 };

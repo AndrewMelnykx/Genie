@@ -29,6 +29,7 @@ const MusicPage = () => {
     mode: "music",
     musicData: [],
     dispatchAction: fetchMusic,
+    featureKey: FeatureType.MUSIC,
   });
   const onSubmitting = useApiLimitDispatcher({
     submitHandlingPropFunction: onMessageSending,

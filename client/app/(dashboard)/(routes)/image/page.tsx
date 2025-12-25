@@ -16,6 +16,7 @@ import { useSubmitHandler } from "@/hooks/state/useSubmitHandler";
 import { useCustomForm } from "@/hooks/forms/useCustomForm";
 
 import CustomImage from "@/components/custom/image";
+import { FeatureType } from "utils/constants/api";
 
 const ImagePage = () => {
   const form = useCustomForm();
@@ -24,6 +25,7 @@ const ImagePage = () => {
     mode: "image",
     dispatchAction: fetchImage,
     messagesData: imagesData,
+    featureKey: FeatureType.IMAGE,
   });
 
   const isLoading = form.formState.isSubmitting;

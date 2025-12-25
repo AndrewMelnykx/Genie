@@ -3,9 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-import Image from "next/image";
 import Link from "next/link";
-import LogoImage from "@/images/lamp.png";
 
 import { cn } from "@/lib/utils";
 import { FreeCounter } from "@/components/free-counter";
@@ -16,7 +14,7 @@ import { getFeatureTypeFromUrl } from "@/helpers/validating-funcs";
 import { fetchApiLimitCount } from "@/store/messages-list/actions";
 import { UseStoreDispatcher } from "@/store/index";
 import { fetchSubscription } from "@/store/ui/actions";
-import { handleThemeToggling } from "@/store/ui/slice";
+// import { handleThemeToggling } from "@/store/ui/slice";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -31,28 +29,26 @@ const Sidebar = () => {
     };
     handleApiLimitCount();
   }, [featureType, dispatch]);
-  const handlClick = () => {
-    dispatch(handleThemeToggling("dark"));
-  };
+
+  //FEATURE TO SWITCH THEME
+  // const handleClick = () => {
+  //   dispatch(handleThemeToggling("dark"));
+  // };
 
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">
         <Link href="/dashboard" className="flex items-center pl-3 mb-14">
-          <div className="relative h-16 w-16 mr-4 border-r-3 rounded-full overflow-hidden flex items-center justify-center mt-[-7%]">
-            <Image fill alt="logo" src={LogoImage} className="object-cover " />
-          </div>
-
           <h1
             className={cn(
-              "text-[3.2rem] w-[60%] text-center  border-b-2 border-purple-700 pb-2 font-hidiya text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600",
-              "transition-all duration-100 hover:border-b-0 hover:pb-[calc(0.5rem+2px)]",
+              "text-[3.2rem] w-[80%] text-center   pb-2 font-maya text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600",
+              "transition-all ",
             )}
           >
-            <i>Genie</i>
-            <button className="bg-white w-100 h-100" onClick={handlClick}>
+            <i>GENIE</i>
+            {/* <button className="bg-white w-100 h-100" onClick={handleClick}>
               123
-            </button>
+            </button> */}
           </h1>
         </Link>
         <div className="space-y-1">

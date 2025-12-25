@@ -30,6 +30,7 @@ const CodePage = () => {
     prerequisiteFormText: prerequisiteText,
     featureKey: FeatureType.CODE,
   });
+
   const onSubmitting = useApiLimitDispatcher({
     submitHandlingPropFunction: onMessageSending,
     featureName: FeatureType.CODE,
@@ -74,11 +75,13 @@ const CodePage = () => {
           <ReactMarkdown
             components={{
               pre: ({ ...props }) => (
-                <div className="overflow-auto w-full m-2 bg-black/10 p-2 rounded-lg">
-                  <pre {...props} />
+                <div className="w-full m-2 bg-black/10 p-2 rounded-lg h-[20vh] overflow-auto break-words">
+                  <pre className="break-words whitespace-pre-wrap" {...props} />
                 </div>
               ),
-              code: ({ ...props }) => <code className="rounded-lg p-1 bg-black/10 " {...props} />,
+              code: ({ ...props }) => (
+                <code className="rounded-lg p-1 bg-black/10 break-words" {...props} />
+              ),
             }}
           >
             {separatedMessages}

@@ -32,36 +32,12 @@ export const metadata: Metadata = {
   description: "AI Platform",
 };
 
-// export default function RootLayout({
-//   children,
-// }: Readonly<{
-//   children: React.ReactNode;
-// }>) {
-//   return (
-//     <ClerkProvider>
-//       <StoreProvider>
-//         <html lang="en">
-//           <CrispProvider />
-//           <body
-//             className={` ${papyrusSans.variable} ${mayaSans.variable} ${hidiyaSans.variable} antialiased`}
-//           >
-//             <ThemeWrapper>
-//               <ModalProvider />
-//               <ToasterProvider />
-//               {children}
-//             </ThemeWrapper>
-//           </body>
-//         </html>
-//       </StoreProvider>
-//     </ClerkProvider>
-//   );
-// }
-// app/layout.tsx
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body
+        className={` ${papyrusSans.variable} ${mayaSans.variable} ${hidiyaSans.variable} antialiased`}
+      >
         <ClerkProvider>
           <StoreProvider>
             <CrispProvider />

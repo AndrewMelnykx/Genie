@@ -38,7 +38,7 @@ const LAST_SEGMENT_TO_FEATURE_TYPE: Record<string, string> = {
 const STABLE_FEATURE_LIMIT_NUMBER = 2;
 const ZERO_USERS_REQUEST = 0;
 const prerequisiteText =
-  "Please generate a coding element max length of 130 symbols  , with a slight explanation, this text dont need to be printed but is very important";
+  "Please generate a coding element max length of 130 symbols  , with a slight explanation, this text don`t need to be printed but is very important, if components includes more then on , wrap them inside a parent component with suggested name of user`s request";
 export {
   API_SUBSCRIPTION,
   FETCH_SUBSCRIPTION,
