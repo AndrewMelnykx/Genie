@@ -2,8 +2,6 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const { GoogleGenAI } = require("@google/genai");
-// const fs = require("fs");
 const generateImageRoute = require("./routes/GenerateImage");
 
 const app = express();
