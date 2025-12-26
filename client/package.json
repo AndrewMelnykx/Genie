@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "db:test": "tsx scripts/test-database.ts",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.6.4",
