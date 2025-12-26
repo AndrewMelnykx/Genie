@@ -1,3 +1,4 @@
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { getApiLimitCount } from "@/lib/api-limit";
@@ -14,13 +15,17 @@ export async function GET(request: Request) {
     if (!userId) {
       return new NextResponse("Unauthorized", { status: statuses.unauthorized });
     }
-    if (!feature) {
-      return new NextResponse("Missing feature parameter", { status: statuses.badRequestError });
-    }
-    const apiLimitCount = await getApiLimitCount(feature);
 
+    if (!feature) {
+      return new NextResponse("Missing feature parameter", {
+        status: statuses.badRequestError,
+      });
+    }
+
+    const apiLimitCount = await getApiLimitCount(feature);
     return NextResponse.json({ count: apiLimitCount });
   } catch (error) {
     console.error("Failed to get api limit", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
   }
 }

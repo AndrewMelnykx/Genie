@@ -26,7 +26,7 @@ const statuses = {
   badRequestError: 400,
 };
 
-const IMAGE_API_LINK = "http://localhost:8000/generate-image";
+const IMAGE_API_LINK = `${process.env.NEXT_PUBLIC_API_URL}/generate-image`;
 const MUSIC_API_LINK = "https://api.musicfy.lol/v1/generate-music";
 const VIDEO_API_LINK = "http://localhost:5000/generate_video";
 
