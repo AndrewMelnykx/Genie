@@ -3,6 +3,8 @@ Genie — AI Content Generation Platform
 Live Demo: [LINK](https://genie-ai-pied.vercel.app/)
 
 📌 Overview
+<img width="1684" height="776" alt="image" src="https://github.com/user-attachments/assets/8b604198-8b43-4fe3-8241-37a973156303" />
+
 
 Genie is a modern, full-stack AI-powered web application that generates images, code, text, video, and music from user prompts.
 The app leverages cutting-edge AI via the Gemini API, a scalable backend with Node.js + Express, and a modern frontend built with Next.js and TypeScript.
@@ -34,6 +36,12 @@ Supabase (Authentication & Database)
 
 Prisma ORM
 
+Clerk
+
+Strapi
+
+Crisp
+
 AI & APIs
 
 Gemini API (AI generation for text, code, images, video, and music)
@@ -59,6 +67,8 @@ Gemini API (AI generation for text, code, images, video, and music)
 📱 Fully responsive UI
 
 ⚡ Fast rendering with Next.js App Router
+<img width="1506" height="848" alt="image" src="https://github.com/user-attachments/assets/f2053204-c755-45fd-8bf3-68d99fad14b4" />
+
 
 📂 Project Structure
 src/
