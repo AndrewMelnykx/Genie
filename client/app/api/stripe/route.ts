@@ -1,10 +1,13 @@
+export const dynamic = "force-dynamic";
+
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
-import prismadb from "@/lib/db";
 import { statuses } from "utils/constants/api";
+
+import prismadb from "@/lib/db";
 
 const settingsUrl = absoluteUrl("/settings");
 
