@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "vercel-build": "npx prisma generate && next build",
+    "vercel-build": "next build",
     "start": "next start",
     "lint": "next lint",
     "db:test": "tsx scripts/test-database.ts",
