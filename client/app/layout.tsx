@@ -28,7 +28,7 @@ const hidiyaSans = localFont({
   weight: "100 900",
 });
 export const metadata: Metadata = {
-  title: "Djinni",
+  title: "Genie",
   description: "AI Platform",
 };
 
