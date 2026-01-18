@@ -12,20 +12,40 @@
 
 // export default prismadb;
 
+// import { Pool } from "pg";
+// import { attachDatabasePool } from "@vercel/functions";
+// import { PrismaPg } from "@prisma/adapter-pg";
+// import { PrismaClient } from "@/lib/generated/prisma/client";
+
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL!,
+//   max: 1,
+// });
+
+// attachDatabasePool(pool);
+
+// const prismadb = new PrismaClient({
+//   adapter: new PrismaPg(pool),
+// });
+
+// export default prismadb;
+
+import { PrismaClient } from "@/lib/generated/prisma/client";
 import { Pool } from "pg";
 import { attachDatabasePool } from "@vercel/functions";
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "@/lib/generated/prisma/client";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL!,
   max: 1,
 });
-
 attachDatabasePool(pool);
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
 
-const prismadb = new PrismaClient({
-  adapter: new PrismaPg(pool),
-});
+const prismadb = globalForPrisma.prisma ?? new PrismaClient({ adapter: new PrismaPg(pool) });
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prismadb;
 
 export default prismadb;
