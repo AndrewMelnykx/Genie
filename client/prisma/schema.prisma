@@ -1,6 +1,6 @@
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../lib/generated/prisma"
   
 }
@@ -8,7 +8,6 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
-//123
 
 model UserApiLimit {
 id String @id @default(cuid())
