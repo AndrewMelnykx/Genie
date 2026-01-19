@@ -66,6 +66,9 @@
   "directories": {
     "lib": "lib"
   },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
